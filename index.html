@@ -160,31 +160,36 @@
     .tag.sec   { border-color: #34d39940; color: var(--success); background: #34d39910; }
     .tag.vlan  { border-color: #fbbf2440; color: var(--warn); background: #fbbf2410; }
 
-    .hero-stat-block {
+   /* ─── Profile Photo (circular, replaces old stat block) ─── */
+    .profile-photo-wrap {
       display: flex;
-      flex-direction: column;
-      gap: 16px;
+      justify-content: center;
+      align-items: center;
     }
-    .hero-stat {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px 20px;
-      min-width: 160px;
-      text-align: center;
+    .profile-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 0 6px rgba(56,189,248,0.08), 0 20px 44px rgba(0,0,0,0.45);
+      flex-shrink: 0;
     }
-    .hero-stat .num {
-      font-family: var(--mono);
-      font-size: 28px;
-      font-weight: 700;
-      color: var(--accent);
+    .profile-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
-    .hero-stat .lbl {
-      font-size: 11px;
-      color: var(--muted);
-      margin-top: 2px;
-      letter-spacing: 0.05em;
+
+    /* ─── About (moved near top) ─── */
+    .about-intro {
+      color: #94a3b8;
+      font-size: 14px;
+      line-height: 1.8;
+      max-width: 640px;
     }
+    .about-intro p + p { margin-top: 14px; }
 
     /* ─── Section headers ─── */
     .section-label {
@@ -347,6 +352,7 @@
     .badge-green  { background: #34d39920; color: var(--success); border: 1px solid #34d39940; }
     .badge-amber  { background: #fbbf2420; color: var(--warn);    border: 1px solid #fbbf2440; }
     .badge-red    { background: #f8717120; color: #f87171;        border: 1px solid #f8717140; }
+    .badge-pink   { background: #f252aa20; color: #f252aa;        border: 1px solid #f252aa40; }
 
     .project-toggle {
       font-size: 20px;
@@ -361,6 +367,7 @@
     }
 
     /* tab system */
+    .project-card.single-project .project-body { display: block; }
     .project-body { display: none; border-top: 1px solid var(--border); }
     .project-card.open .project-body { display: block; }
 
@@ -507,10 +514,88 @@
       overflow-x: auto;
       line-height: 1.7;
       margin-top: 8px;
+      white-space: pre-wrap;
     }
     .code-block .kw  { color: #c084fc; }
     .code-block .cm  { color: #475569; }
     .code-block .str { color: #86efac; }
+
+    /* ─── Data Tables ─── */
+    .data-table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-top: 8px;
+    }
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      min-width: 480px;
+    }
+    .data-table thead th {
+      background: var(--surface);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-align: left;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .data-table tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      color: #94a3b8;
+      font-family: var(--mono);
+      font-size: 12.5px;
+      white-space: nowrap;
+    }
+    .data-table tbody tr:last-child td { border-bottom: none; }
+    .data-table tbody tr:hover td { background: rgba(56,189,248,0.04); color: var(--text); }
+
+    /* status pill for use inside table cells (verification tables) */
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 20px;
+    }
+    .status-pill.ok   { background: #34d39918; color: var(--success); border: 1px solid #34d39940; }
+    .status-pill.fail { background: #fbbf2418; color: var(--warn);    border: 1px solid #fbbf2440; }
+    .status-pill.info { background: #38bdf818; color: var(--accent); border: 1px solid #38bdf840; }
+
+    /* ─── Screenshot gallery (evidence thumbnails) ─── */
+    .evidence-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .evidence-item { display: flex; flex-direction: column; gap: 6px; }
+    .evidence-thumb {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      cursor: zoom-in;
+      transition: border-color var(--transition), opacity var(--transition);
+    }
+    .evidence-thumb:hover { border-color: var(--accent); opacity: 0.9; }
+    .evidence-caption {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .evidence-caption strong { color: var(--text); }
 
     /* ─── Lightbox ─── */
     .topo-img {
@@ -761,41 +846,31 @@
   <div class="nav-inner">
     <div class="nav-logo"><span>~/</span>portfolio<span>.net</span></div>
     <ul class="nav-links">
+      <li><a href="#about">About</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#involvements">Involvements</a></li>
-      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
 </nav>
 
 <!-- ─── HERO ─── -->
 <div class="page">
+  <section id="about">
   <div id="hero">
+    <div class="profile-photo-wrap">
+      <div class="profile-photo">
+        <img src="profile-photo.jpg" alt="Your Name" />
+      </div>
+    </div>
     <div>
       <div class="hero-eyebrow">// Network & Security Engineer</div>
       <h1 class="hero-name">Your Name<br><em>Here.</em></h1>
-      <p class="hero-desc">
-        Computer Networking student with hands-on experience in enterprise routing, WAN design, and network security. These are real labs and case studies built from the ground up.
-      </p>
-      <div class="hero-tags">
-        <span class="tag ospf">OSPF</span>
-        <span class="tag bgp">eBGP</span>
-        <span class="tag vlan">VLAN</span>
-        <span class="tag sec">ACL</span>
-        <span class="tag sec">Firewall</span>
-        <span class="tag">Cisco Packet Tracer</span>
-        <span class="tag">WAN</span>
+      <div class="about-intro" style="margin-top:18px;">
+        <p>I'm a Computer Networking student based in Malaysia, passionate about building and securing networks that actually work at scale. My labs are built in Cisco Packet Tracer with real enterprise scenarios in mind.</p>
+        <p>I'm most interested in WAN architecture, network security, and eventually pursuing a career in network engineering or security operations. Outside of the lab, I'm involved in student leadership and enjoy breaking down complex network concepts for classmates.</p>
       </div>
-    </div>
-    <div class="hero-stat-block">
-      <div class="hero-stat">
-        <div class="num" id="stat-projects">0</div>
-        <div class="lbl">Lab Projects</div>
-      </div>
-      <div class="hero-stat">
-        <div class="num">2A</div>
-        <div class="lbl">Latest Project</div>
-      </div>
+
     </div>
   </div>
 </div>
@@ -812,7 +887,6 @@
       <button class="cat-pill active" onclick="selectCategory('lan')">🏢 LAN & Switching</button>
       <button class="cat-pill" onclick="selectCategory('wan')">🌐 Routing & WAN</button>
       <button class="cat-pill" onclick="selectCategory('sec')">🔒 Network Security</button>
-      <button class="cat-pill" onclick="selectCategory('mon')">💻 Network Monitoring & Automation</button>
       <button class="cat-pill" onclick="selectCategory('anal')">🚦 Traffic Analysis</button>
     </div>
 
@@ -841,13 +915,6 @@
             <div class="cat-count" id="count-sec"></div>
           </div>
         </div>       
-        <div class="cat-item" onclick="selectCategory('mon')" data-cat="mon">
-          <div class="cat-icon">💻</div>
-          <div class="cat-info">
-            <div class="cat-name">Network Monitoring &amp; Automation</div>
-            <div class="cat-count" id="count-mon"></div>
-          </div>
-        </div>       
         <div class="cat-item" onclick="selectCategory('anal')" data-cat="anal">
           <div class="cat-icon">🚦</div>
           <div class="cat-info">
@@ -863,24 +930,25 @@
         <!-- ══ LAN CATEGORY ══ -->
         <div class="cat-group active" data-cat="lan">
 
-          <div class="project-card" id="proj1">
-            <div class="project-header" onclick="toggleProject('proj1')">
+          <div class="project-card single-project" id="proj1">
+            <div class="project-header">
               <div class="project-meta">
-                <div class="project-eyebrow">Project 1A &amp; 1B · VLAN &amp; Inter-VLAN Routing</div>
-                <div class="project-title">Enterprise Office VLAN Segmentation</div>
+                <div class="project-eyebrow">Project 1A · LAN Design &amp; Switching</div>
+                <div class="project-title">Hotel Campus Network — Dual-Core Redundancy &amp; Segmentation</div>
                 <div class="project-badges">
-                  <span class="badge badge-blue">VLAN</span>
-                  <span class="badge badge-amber">Trunking</span>
-                  <span class="badge badge-green">Inter-VLAN</span>
+                  <span class="badge badge-blue">HSRP</span>
+                  <span class="badge badge-blue">EtherChannel</span>
+                  <span class="badge badge-amber">VLAN Segmentation</span>
+                  <span class="badge badge-green">Port Security</span>
+                  <span class="badge badge-purple">OSPF (edge)</span>
                   <span class="badge badge-purple">Cisco PT</span>
                 </div>
               </div>
-              <div class="project-toggle">⌄</div>
+
             </div>
             <div class="project-body">
               <div class="tab-bar">
                 <button class="tab-btn active" onclick="switchTab('proj1','scenario')">Scenario</button>
-                <button class="tab-btn" onclick="switchTab('proj1','concepts')">Concepts</button>
                 <button class="tab-btn" onclick="switchTab('proj1','topology')">Topology</button>
                 <button class="tab-btn" onclick="switchTab('proj1','config')">Config</button>
                 <button class="tab-btn" onclick="switchTab('proj1','output')">Output</button>
@@ -888,377 +956,471 @@
               <div class="tab-content active" data-tab="scenario">
                 <div class="content-block">
                   <h4>Background</h4>
-                  <p>TechNova Sdn Bhd operates a single-site office with multiple departments sharing the same flat network, causing broadcast storms, security gaps, and poor traffic management.</p>
+                  <p>TechNova Sdn Bhd operates a 3-story, high-occupancy hotel network supporting guest WiFi, guest room devices, hospitality IP phones, back-office administration, and point-of-sale payment terminals — all sharing the same physical infrastructure, with continuous uptime expected across every guest-facing and payment-processing system.</p>
                 </div>
                 <div class="callout warn">
-                  <strong style="color:var(--warn)">Problem:</strong> All departments (HR, IT, Finance, Sales) were on the same subnet. Any broadcast hit every device. Sensitive finance data had no isolation.
+                  <strong style="color:var(--warn)">Problem:</strong> A single core switch meant one hardware failure could take down guest WiFi, phones, and payment processing at the same time. Guest devices, POS terminals, and staff systems had no traffic separation, so a compromised guest laptop could potentially reach payment infrastructure — a direct PCI-DSS compliance risk. On top of that, default switch settings left dynamic trunk negotiation (DTP) enabled and Native VLAN 1 active across every inter-switch link, leaving the backbone exposed to VLAN hopping.
                 </div>
                 <div class="callout success">
-                  <strong style="color:var(--success)">Goal:</strong> Segment the network into department VLANs, enable inter-VLAN routing so they can still communicate where needed, and apply access controls.
+                  <strong style="color:var(--success)">Solution:</strong> Deploy two core multilayer switches in an <strong style="color:var(--text)">HSRP-redundant pair</strong>, splitting the active gateway role per VLAN so both cores carry real traffic simultaneously instead of one sitting idle. Segment the network into purpose-built VLANs (Guest WiFi, Guest Rooms, POS, Voice, Admin, Management), bond access-switch uplinks with <strong style="color:var(--text)">LACP EtherChannel</strong>, and run OSPF between the cores and a WAN edge router for uplink failover. Harden every trunk link by disabling DTP negotiation and moving native VLAN traffic onto an isolated, unrouted <strong style="color:var(--text)">VLAN 999 dead-end network</strong> — closing off VLAN 1 as an attack surface. Layer ACLs to isolate guest traffic from POS/Admin, and port security to lock down user-facing ports.
                 </div>
               </div>
-              <div class="tab-content" data-tab="concepts">
-                <div class="content-block">
-                  <h4>Key Concepts Applied</h4>
-                  <ul class="steps">
-                    <li><span class="step-num">01</span> VLANs create logical network segments on the same physical switch — each department gets its own broadcast domain.</li>
-                    <li><span class="step-num">02</span> Trunk links carry tagged frames for multiple VLANs between switches and routers using 802.1Q encapsulation.</li>
-                    <li><span class="step-num">03</span> Router-on-a-Stick (ROAS) uses sub-interfaces on a single router port to route between VLANs.</li>
-                    <li><span class="step-num">04</span> ACLs are applied to restrict which VLANs can reach sensitive subnets (e.g. Finance).</li>
-                  </ul>
-                </div>
-              </div>
+
               <div class="tab-content" data-tab="topology">
                 <div class="content-block">
                   <h4>Network Diagram</h4>
-                  <div class="topo-placeholder">
-                    <div class="topo-icon">🖧</div>
-                    <p>Upload your Packet Tracer topology screenshot here.</p>
-                    <p style="margin-top:10px;font-size:12px;color:var(--muted)">Replace this placeholder with:</p>
-                    <div style="margin-top:8px;background:#0d1117;border-radius:6px;padding:10px 14px;font-family:var(--mono);font-size:11px;color:var(--accent);text-align:left;">
-                      &lt;img src="proj1-topology.png"<br>
-                      &nbsp;&nbsp;&nbsp;&nbsp; class="topo-img"<br>
-                      &nbsp;&nbsp;&nbsp;&nbsp; alt="VLAN Topology"<br>
-                      &nbsp;&nbsp;&nbsp;&nbsp; onclick="openLightbox(this)" /&gt;<br>
-                      &lt;p class="img-hint"&gt;click to enlarge&lt;/p&gt;
-                    </div>
-                    <div class="topo-label">[ topology diagram ]</div>
+                  <img src="hotel-topology.png"
+                       class="topo-img"
+                       alt="Hotel Campus Network Topology"
+                       style="max-width: 550px; display: block; margin: 0 auto;"
+                       onclick="openLightbox(this)" />
+                </div>
+
+                <div class="content-block">
+                  <h4>VLAN &amp; Subnet Plan</h4>
+                  <div class="data-table-wrap">
+                    <table class="data-table">
+                      <thead><tr><th>VLAN</th><th>Name</th><th>Subnet</th><th>Usable Range</th><th>HSRP VIP</th></tr></thead>
+                      <tbody>
+                        <tr><td>10</td><td>Guest_Wireless</td><td>172.16.10.0/22</td><td>172.16.10.1 – 172.16.13.254</td><td>172.16.10.1</td></tr>
+                        <tr><td>20</td><td>Guest_Rooms</td><td>172.16.20.0/23</td><td>172.16.20.1 – 172.16.21.254</td><td>172.16.20.1</td></tr>
+                        <tr><td>30</td><td>Hotel_POS</td><td>192.168.30.0/24</td><td>192.168.30.1 – .254</td><td>192.168.30.1</td></tr>
+                        <tr><td>40</td><td>Hotel_Voice</td><td>192.168.40.0/24</td><td>192.168.40.1 – .254</td><td>192.168.40.1</td></tr>
+                        <tr><td>50</td><td>Hotel_Admin</td><td>192.168.50.0/24</td><td>192.168.50.1 – .254</td><td>192.168.50.1</td></tr>
+                        <tr><td>99</td><td>Infra_Mgmt (native)</td><td>10.99.99.0/24</td><td>10.99.99.1 – .254</td><td>10.99.99.1</td></tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
+
                 <div class="content-block">
-                  <h4>IP Addressing</h4>
-                  <div class="code-block">
-<span class="cm">! VLAN assignments</span>
-VLAN 10 — HR       192.168.10.0/24
-VLAN 20 — IT       192.168.20.0/24
-VLAN 30 — Finance  192.168.30.0/24
-VLAN 40 — Sales    192.168.40.0/24
+                  <h4>Core Switch Real IPs &amp; Active HSRP Gateway</h4>
+                  <div class="data-table-wrap">
+                    <table class="data-table">
+                      <thead><tr><th>VLAN</th><th>Core-MLS-1</th><th>Core-MLS-2</th><th>HSRP Active</th></tr></thead>
+                      <tbody>
+                        <tr><td>10</td><td>172.16.10.2</td><td>172.16.10.3</td><td>Core-1</td></tr>
+                        <tr><td>20</td><td>172.16.20.2</td><td>172.16.20.3</td><td>Core-1</td></tr>
+                        <tr><td>30</td><td>192.168.30.2</td><td>192.168.30.3</td><td>Core-2</td></tr>
+                        <tr><td>40</td><td>192.168.40.2</td><td>192.168.40.3</td><td>Core-1</td></tr>
+                        <tr><td>50</td><td>192.168.50.2</td><td>192.168.50.3</td><td>Core-2</td></tr>
+                        <tr><td>99</td><td>10.99.99.2</td><td>10.99.99.3</td><td>Core-1</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="content-block">
+                  <h4>Key Device Assignments</h4>
+                  <div class="data-table-wrap">
+                    <table class="data-table">
+                      <thead><tr><th>Device</th><th>VLAN</th><th>IP</th><th>Method</th></tr></thead>
+                      <tbody>
+                        <tr><td>Central DHCP / Payment Gateway</td><td>50</td><td>192.168.50.10</td><td>Static</td></tr>
+                        <tr><td>Printer</td><td>50</td><td>192.168.50.11</td><td>Static</td></tr>
+                        <tr><td>POS — Front Desk</td><td>30</td><td>192.168.30.10</td><td>Static</td></tr>
+                        <tr><td>POS — Catering (Floor 3)</td><td>30</td><td>192.168.30.11</td><td>Static</td></tr>
+                        <tr><td>IP Phones (all)</td><td>40</td><td>DHCP pool</td><td>DHCP via relay</td></tr>
+                        <tr><td>Guest Room Smart TVs / Laptops</td><td>20</td><td>DHCP pool</td><td>DHCP via relay</td></tr>
+                        <tr><td>Guest WiFi Devices</td><td>10</td><td>DHCP pool</td><td>DHCP via relay</td></tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
+
               <div class="tab-content" data-tab="config">
                 <div class="content-block">
-                  <h4>Switch Config (excerpt)</h4>
+                  <h4>EDGE-RTR / CORE-MLS-1 / CORE-MLS-2 — OSPF Uplinks</h4>
                   <div class="code-block">
-<span class="kw">vlan</span> 10
- name HR
-<span class="kw">vlan</span> 20
- name IT
+<span class="cm">! EDGE-RTR Configuration</span>
+<span class="kw">interface</span> Loopback0
+ ip add 1.1.1.1 255.255.255.255
+<span class="kw">router ospf</span> 1
+ router-id 1.1.1.1
+ network 10.255.255.0 0.0.0.3 area 0
+ network 10.255.255.4 0.0.0.3 area 0
+ network 1.1.1.1 0.0.0.0 area 0
 <span class="cm">!</span>
-<span class="kw">interface</span> Fa0/1
- switchport mode access
- switchport access vlan 10
+<span class="cm">! CORE-MLS-1 Configuration</span>
+<span class="kw">interface</span> G1/0/24
+ ip add 10.255.255.1 255.255.255.252
+<span class="kw">router ospf</span> 1
+router-id 2.2.2.2
+network 10.255.255.0 0.0.0.3 area 0
+network 172.16.10.0 0.0.3.255 area 0
+network 172.16.20.0 0.0.1.255 area 0
+network 192.168.30.0 0.0.0.255 area 0
+network 192.168.40.0 0.0.0.255 area 0
+network 192.168.50.0 0.0.0.255 area 0
+network 10.99.99.0 0.0.0.255 area 0
 <span class="cm">!</span>
-<span class="kw">interface</span> Fa0/24
- switchport mode trunk
- switchport trunk allowed vlan 10,20,30,40
+<span class="cm">! CORE-MLS-2 Configuration</span>
+<span class="kw">interface</span> G1/0/24
+ ip add 10.255.255.5 255.255.255.252
+<span class="kw">router ospf</span> 1
+Core-MLS-1(config-router)#router-id 3.3.3.3
+Core-MLS-1(config-router)#network 10.255.255.4 0.0.0.3 area 0
+Core-MLS-1(config-router)#network 172.16.10.0 0.0.3.255 area 0
+Core-MLS-1(config-router)#network 172.16.20.0 0.0.1.255 area 0
+Core-MLS-1(config-router)#network 192.168.30.0 0.0.0.255 area 0
+Core-MLS-1(config-router)#network 192.168.40.0 0.0.0.255 area 0
+Core-MLS-1(config-router)#network 192.168.50.0 0.0.0.255 area 0
+Core-MLS-1(config-router)#network 10.99.99.0 0.0.0.255 area 0
                   </div>
                 </div>
+
                 <div class="content-block">
-                  <h4>Router Sub-interface Config</h4>
+                  <h4>Core-MLS-1 — Trunking &amp; EtherChannel</h4>
                   <div class="code-block">
-<span class="kw">interface</span> Gig0/0.10
- encapsulation dot1Q 10
- ip address 192.168.10.1 255.255.255.0
+<span class="cm">! Trunk to access switches</span>
+<span class="kw">interface range</span> g1/0/1-4
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30,40,50,99,999
+ switchport trunk native vlan 999
+ switchport nonegotiate
 <span class="cm">!</span>
-<span class="kw">interface</span> Gig0/0.30
- encapsulation dot1Q 30
- ip address 192.168.30.1 255.255.255.0
+<span class="cm">! LACP bundle to Core-MLS-2</span>
+<span class="kw">interface range</span> g1/1/1-2
+ channel-protocol lacp
+ channel-group 1 mode active
+<span class="kw">interface</span> port-channel 1
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30,40,50,99,999
                   </div>
                 </div>
+
+                <div class="content-block">
+                  <h4>Core-MLS-1 — HSRP Gateway (VLAN 10 example)</h4>
+                  <div class="code-block">
+<span class="kw">interface</span> vlan 10
+ ip address 172.16.10.2 255.255.252.0
+ standby version 2
+ standby 1 ip 172.16.10.1
+ standby 1 priority 150
+ standby 1 preempt
+ standby 1 track g1/0/24
+ ip helper-address 192.168.50.10
+                  </div>
+                </div>
+
+                <div class="content-block">
+                  <h4>Guest Isolation ACL — Applied on Both Cores</h4>
+                  <div class="code-block">
+<span class="kw">ip access-list</span> ext GUEST_ISLAND
+ deny ip 172.16.10.0 0.0.3.255 192.168.30.0 0.0.0.255
+ deny ip 172.16.20.0 0.0.1.255 192.168.30.0 0.0.0.255
+ deny ip 172.16.10.0 0.0.3.255 192.168.50.0 0.0.0.255
+ deny ip 172.16.20.0 0.0.1.255 192.168.50.0 0.0.0.255
+<span class="cm">!</span>
+<span class="kw">interface</span> vlan 10
+ ip access-group GUEST_ISLAND in
+<span class="kw">interface</span> vlan 20
+ ip access-group GUEST_ISLAND in
+                  </div>
+                </div>
+
+
               </div>
+
               <div class="tab-content" data-tab="output">
                 <div class="content-block">
                   <h4>Verification Results</h4>
-                  <div class="result-grid">
-                    <div class="result-item"><div class="r-label">HR → IT Ping</div><div class="r-val">✓ Reachable</div></div>
-                    <div class="result-item"><div class="r-label">Sales → Finance</div><div class="r-val warn">✗ Blocked (ACL)</div></div>
-                    <div class="result-item"><div class="r-label">Broadcast Domain</div><div class="r-val blue">Isolated ×4</div></div>
+                  <div class="data-table-wrap">
+                    <table class="data-table">
+                      <thead><tr><th>#</th><th>Test</th><th>Result</th></tr></thead>
+                      <tbody>
+                        <tr><td>1</td><td>STP root bridge per VLAN (Core-1 vs Core-2)</td><td><span class="status-pill ok">✓ Split roots</span></td></tr>
+                        <tr><td>2</td><td>Shut peer EtherChannel link (Core-1 ↔ Core-2)</td><td><span class="status-pill ok">✓ No failover</span></td></tr>
+                        <tr><td>3</td><td>Shut WAN uplink (Edge-RTR)</td><td><span class="status-pill ok">✓ Failover in seconds</span></td></tr>
+                        <tr><td>4</td><td>Guest device → POS terminal</td><td><span class="status-pill fail">✗ Denied</span></td></tr>
+                        <tr><td>5</td><td>Guest device → Internet test target</td><td><span class="status-pill ok">✓ Success</span></td></tr>
+                        <tr><td>6</td><td>POS terminal → Payment gateway</td><td><span class="status-pill ok">✓ Success</span></td></tr>
+                        <tr><td>7</td><td>Second device plugged into POS port</td><td><span class="status-pill fail">✗ Port err-disabled</span></td></tr>
+                        <tr><td>8</td><td>IP phone + guest laptop on same port</td><td><span class="status-pill ok">✓ Separate VLANs</span></td></tr>
+                        <tr><td>9</td><td><code>sh etherchannel summary</code></td><td><span class="status-pill ok">✓ Po1 (SU)</span></td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="evidence-gallery">
+                    <div class="evidence-item">
+                      <img src="hotel-test3-wan-failover.png" class="evidence-thumb" alt="HSRP failover on WAN uplink shutdown" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 3</strong> — Gateway fails over when WAN link drops</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="hotel-test7-port-errdisable.png" class="evidence-thumb" alt="POS port shutting down on violation" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 7</strong> — POS port shuts down on tampering</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="hotel-test8-voice-vlan.png" class="evidence-thumb" alt="Phone and laptop on separate VLANs" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 8</strong> — Phone and guest device auto-separate onto different VLANs</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="hotel-test9-etherchannel.png" class="evidence-thumb" alt="EtherChannel summary showing bundled link" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 9</strong> — Both core links bundled as one active EtherChannel</div>
+                    </div>
                   </div>
                 </div>
-                <div class="content-block">
-                  <h4>What I Learned</h4>
-                  <div class="callout purple">Misconfiguring the trunk native VLAN caused a silent loop — debugging it trained me to read <code>show vlan brief</code> and <code>show interfaces trunk</code> carefully.</div>
-                </div>
+
+
               </div>
             </div>
           </div><!-- /proj1 -->
-
-          <div class="project-card" id="proj1b">
-            <div class="project-header" onclick="toggleProject('proj1b')">
-              <div class="project-meta">
-                <div class="project-eyebrow">Project 1C · Redundancy</div>
-                <div class="project-title">Campus Network with Redundant Uplinks</div>
-                <div class="project-badges">
-                  <span class="badge badge-blue">STP</span>
-                  <span class="badge badge-amber">EtherChannel</span>
-                  <span class="badge badge-purple">Cisco PT</span>
-                </div>
-              </div>
-              <div class="project-toggle">⌄</div>
-            </div>
-            <div class="project-body">
-              <div class="tab-bar">
-                <button class="tab-btn active" onclick="switchTab('proj1b','scenario')">Scenario</button>
-                <button class="tab-btn" onclick="switchTab('proj1b','topology')">Topology</button>
-                <button class="tab-btn" onclick="switchTab('proj1b','config')">Config</button>
-                <button class="tab-btn" onclick="switchTab('proj1b','output')">Output</button>
-              </div>
-              <div class="tab-content active" data-tab="scenario">
-                <div class="callout">
-                  <strong style="color:var(--accent)">Coming Soon</strong> — Replace this with your actual project details when ready.
-                </div>
-              </div>
-              <div class="tab-content" data-tab="topology">
-                <div class="topo-placeholder"><div class="topo-icon">🖧</div><p>Topology coming soon.</p><div class="topo-label">[ work in progress ]</div></div>
-              </div>
-              <div class="tab-content" data-tab="config">
-                <div class="content-block"><p style="color:var(--muted)">Configuration details will be added when the lab is complete.</p></div>
-              </div>
-              <div class="tab-content" data-tab="output">
-                <div class="content-block"><p style="color:var(--muted)">Verification output will be added when the lab is complete.</p></div>
-              </div>
-            </div>
-          </div><!-- /proj1b -->
 
         </div><!-- /cat-group lan -->
 
         <!-- ══ WAN CATEGORY ══ -->
         <div class="cat-group" data-cat="wan">
 
-          <div class="project-card" id="proj2">
-            <div class="project-header" onclick="toggleProject('proj2')">
+
+          <div class="project-card single-project" id="proj2">
+            <div class="project-header">
               <div class="project-meta">
                 <div class="project-eyebrow">Project 2A · Routing &amp; WAN</div>
                 <div class="project-title">Multi-Site WAN Routing with OSPF &amp; BGP</div>
                 <div class="project-badges">
                   <span class="badge badge-blue">OSPF</span>
                   <span class="badge badge-purple">eBGP</span>
-                  <span class="badge badge-amber">WAN</span>
-                  <span class="badge badge-green">ACL</span>
+                  <span class="badge badge-amber">Route Redistribution</span>
+                  <span class="badge badge-green">VLAN Hardening</span>
                   <span class="badge badge-purple">Cisco PT</span>
                 </div>
               </div>
-              <div class="project-toggle">⌄</div>
+
             </div>
             <div class="project-body">
               <div class="tab-bar">
                 <button class="tab-btn active" onclick="switchTab('proj2','scenario')">Scenario</button>
-                <button class="tab-btn" onclick="switchTab('proj2','concepts')">Concepts</button>
                 <button class="tab-btn" onclick="switchTab('proj2','topology')">Topology</button>
-                <button class="tab-btn" onclick="switchTab('proj2','config')">HQ Config</button>
-                <button class="tab-btn" onclick="switchTab('proj2','branch')">Branch Config</button>
+                <button class="tab-btn" onclick="switchTab('proj2','config')">Config</button>
                 <button class="tab-btn" onclick="switchTab('proj2','output')">Output</button>
               </div>
+
               <div class="tab-content active" data-tab="scenario">
                 <div class="content-block">
                   <h4>Background</h4>
-                  <p>TechNova Sdn Bhd has expanded to three locations — a main HQ in Kuala Lumpur, Branch 1 in Penang, and Branch 2 in Johor. Each site has its own local network with department VLANs.</p>
+                  <p>TechNova Sdn Bhd operates three sites — a Headquarters and two branch offices in Penang and Johor — each with its own local VLANs for users, servers, and management. The three sites needed to communicate reliably over WAN links simulating how real companies connect branch offices through an ISP.</p>
                 </div>
                 <div class="callout warn">
-                  <strong style="color:var(--warn)">Problem:</strong> The three sites have no inter-site communication. Staff at branches cannot reach HQ resources or each other.
+                  <strong style="color:var(--warn)">Problem:</strong> Each site's local network was isolated with no path to reach the other two locations. Simply running one routing protocol everywhere wasn't realistic — real enterprises don't share a single IGP across sites they don't administer end-to-end, and don't want their entire internal topology exposed to an external network.
                 </div>
                 <div class="callout success">
-                  <strong style="color:var(--success)">Solution:</strong> Deploy OSPF within each site, use eBGP between sites via ISP-simulated routers, and apply ACLs to restrict cross-site department access.
+                  <strong style="color:var(--success)">Solution:</strong> Run <strong style="color:var(--text)">OSPF</strong> within each site to handle local inter-VLAN routing, and connect all three sites through a simulated <strong style="color:var(--text)">ISP using eBGP</strong> — each site advertising its networks as its own Autonomous System. Routes are redistributed between OSPF and BGP at each site's edge router so local subnets become reachable across the WAN without merging the sites into one flat routing domain. Each site's switch also hardens its trunk links onto an isolated, unrouted VLAN 99 <em>Black_Hole</em> network to close off Native VLAN 1 as an attack surface.
                 </div>
               </div>
-              <div class="tab-content" data-tab="concepts">
-                <div class="content-block">
-                  <h4>Key Concepts Applied</h4>
-                  <ul class="steps">
-                    <li><span class="step-num">01</span> <strong style="color:var(--text)">OSPF (Area 0)</strong> — Link-state IGP used within each site to build a complete local routing table.</li>
-                    <li><span class="step-num">02</span> <strong style="color:var(--text)">eBGP</strong> — EGP used between sites, simulating how real ISPs connect autonomous systems.</li>
-                    <li><span class="step-num">03</span> <strong style="color:var(--text)">WAN Links</strong> — Serial point-to-point links between ISP routers simulate internet transit paths.</li>
-                    <li><span class="step-num">04</span> <strong style="color:var(--text)">Route Redistribution</strong> — OSPF routes redistributed into BGP so remote sites learn all local subnets.</li>
-                    <li><span class="step-num">05</span> <strong style="color:var(--text)">ACLs</strong> — Extended ACLs control which departments across sites can communicate.</li>
-                  </ul>
-                </div>
-              </div>
+
               <div class="tab-content" data-tab="topology">
                 <div class="content-block">
-                  <h4>Overall Topology</h4>
-                  <div class="topo-placeholder">
-                    <div class="topo-icon">🌐</div>
-                    <p>Upload your full WAN topology diagram here.</p>
-                    <p style="margin-top:10px;font-size:12px;color:var(--muted)">Replace this placeholder with:</p>
-                    <div style="margin-top:8px;background:#0d1117;border-radius:6px;padding:10px 14px;font-family:var(--mono);font-size:11px;color:var(--accent);text-align:left;">
-                      &lt;img src="proj2-wan-topology.png"<br>
-                      &nbsp;&nbsp;&nbsp;&nbsp; class="topo-img"<br>
-                      &nbsp;&nbsp;&nbsp;&nbsp; alt="WAN Topology"<br>
-                      &nbsp;&nbsp;&nbsp;&nbsp; onclick="openLightbox(this)" /&gt;<br>
-                      &lt;p class="img-hint"&gt;click to enlarge&lt;/p&gt;
-                    </div>
-                    <div class="topo-label">[ HQ — ISP — Branch1 — Branch2 ]</div>
+                  <h4>Network Diagram</h4>
+                  <img src="proj3-wan-topology.png"
+                       class="topo-img"
+                       alt="Hotel Campus Network Topology"
+                       style="max-width: 550px; display: block; margin: 0 auto;"
+                       onclick="openLightbox(this)" />
+                </div>
+
+
+                <div class="content-block">
+                  <h4>WAN Links (Site ↔ ISP)</h4>
+                  <div class="data-table-wrap">
+                    <table class="data-table">
+                      <thead><tr><th>Link</th><th>Subnet</th><th>Router A IP</th><th>Router B IP</th></tr></thead>
+                      <tbody>
+                        <tr><td>PNG_BR ↔ ISP</td><td>10.0.12.0/30</td><td>PNG_BR: 10.0.12.1</td><td>ISP: 10.0.12.2</td></tr>
+                        <tr><td>HQ_BR ↔ ISP</td><td>10.0.13.0/30</td><td>HQ_BR: 10.0.13.1</td><td>ISP: 10.0.13.2</td></tr>
+                        <tr><td>JHR_BR ↔ ISP</td><td>10.0.14.0/30</td><td>JHR_BR: 10.0.14.1</td><td>ISP: 10.0.14.2</td></tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
+
                 <div class="content-block">
-                  <h4>IP Plan</h4>
-                  <div class="code-block">
-<span class="cm">! Autonomous Systems</span>
-HQ      AS 100   10.0.0.0/8
-Branch1 AS 200   172.16.0.0/16
-Branch2 AS 300   172.17.0.0/16
-<span class="cm">!</span>
-<span class="cm">! WAN Links (ISP simulation)</span>
-HQ ↔ ISP1      203.0.113.0/30
-ISP1 ↔ Branch1 203.0.113.4/30
-ISP1 ↔ Branch2 203.0.113.8/30
+                  <h4>Penang Branch — LAN (AS 65001)</h4>
+                  <div class="data-table-wrap">
+                    <table class="data-table">
+                      <thead><tr><th>VLAN</th><th>Name</th><th>Subnet</th><th>Gateway</th></tr></thead>
+                      <tbody>
+                        <tr><td>10</td><td>Users</td><td>172.16.10.0/24</td><td>172.16.10.1</td></tr>
+                        <tr><td>20</td><td>Servers</td><td>172.16.20.0/24</td><td>172.16.20.1</td></tr>
+                        <tr><td>99</td><td>Black_Hole</td><td>172.16.99.0/24</td><td>172.16.99.1</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="content-block">
+                  <h4>Headquarters — LAN (AS 65002)</h4>
+                  <div class="data-table-wrap">
+                    <table class="data-table">
+                      <thead><tr><th>VLAN</th><th>Name</th><th>Subnet</th><th>Gateway</th></tr></thead>
+                      <tbody>
+                        <tr><td>10</td><td>Users</td><td>192.168.10.0/24</td><td>192.168.10.1</td></tr>
+                        <tr><td>20</td><td>Servers</td><td>192.168.20.0/24</td><td>192.168.20.1</td></tr>
+                        <tr><td>30</td><td>Mgmt</td><td>192.168.30.0/24</td><td>192.168.30.1</td></tr>
+                        <tr><td>99</td><td>Black_Hole</td><td>192.168.99.0/24</td><td>192.168.99.1</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="content-block">
+                  <h4>Johor Branch — LAN (AS 65003)</h4>
+                  <div class="data-table-wrap">
+                    <table class="data-table">
+                      <thead><tr><th>VLAN</th><th>Name</th><th>Subnet</th><th>Gateway</th></tr></thead>
+                      <tbody>
+                        <tr><td>10</td><td>Users</td><td>172.17.10.0/24</td><td>172.17.10.1</td></tr>
+                        <tr><td>20</td><td>Servers</td><td>172.17.20.0/24</td><td>172.17.20.1</td></tr>
+                        <tr><td>99</td><td>Black_Hole</td><td>172.17.99.0/24</td><td>172.17.99.1</td></tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
+
               <div class="tab-content" data-tab="config">
                 <div class="content-block">
-                  <h4>HQ Router — OSPF + eBGP</h4>
+                  <h4>ISP — eBGP Transit (AS 65000)</h4>
+                  <div class="code-block">
+<span class="kw">router bgp</span> 65000
+ bgp router-id 1.1.1.1
+ neighbor 10.0.12.1 remote-as 65001
+ neighbor 10.0.12.1 next-hop-self
+ neighbor 10.0.13.1 remote-as 65002
+ neighbor 10.0.13.1 next-hop-self
+ neighbor 10.0.14.1 remote-as 65003
+ neighbor 10.0.14.1 next-hop-self
+                  </div>
+                </div>
+
+                <div class="content-block">
+                  <h4>Branch Router — Sub-interfaces (Penang example)</h4>
+                  <div class="code-block">
+<span class="kw">interface</span> g0/1.10
+ encapsulation dot1Q 10
+ ip address 172.16.10.1 255.255.255.0
+ ip helper-address 192.168.30.100
+<span class="cm">!</span>
+<span class="kw">interface</span> g0/1.20
+ encapsulation dot1Q 20
+ ip address 172.16.20.1 255.255.255.0
+ ip helper-address 192.168.30.100
+<span class="cm">!</span>
+<span class="kw">interface</span> g0/1.99
+ encapsulation dot1Q 99
+ ip address 172.16.99.1 255.255.255.0
+                  </div>
+                </div>
+
+                <div class="content-block">
+                  <h4>Branch Router — OSPF + eBGP + Redistribution (Penang, AS 65001)</h4>
                   <div class="code-block">
 <span class="kw">router ospf</span> 1
- network 10.0.0.0 0.255.255.255 area 0
- redistribute bgp 100 subnets
+ router-id 2.2.2.2
+ network 172.16.10.0 0.0.0.255 area 0
+ network 172.16.20.0 0.0.0.255 area 0
+ network 172.16.99.0 0.0.0.255 area 0
+ redistribute bgp 65001 subnets
 <span class="cm">!</span>
-<span class="kw">router bgp</span> 100
- neighbor 203.0.113.2 remote-as 999
- network 10.0.0.0 mask 255.0.0.0
+<span class="kw">router bgp</span> 65001
+ bgp router-id 2.2.2.2
+ neighbor 10.0.12.2 remote-as 65000
+ network 172.16.10.0 mask 255.255.255.0
+ network 172.16.20.0 mask 255.255.255.0
+ network 172.16.99.0 mask 255.255.255.0
  redistribute ospf 1
                   </div>
                 </div>
-              </div>
-              <div class="tab-content" data-tab="branch">
+
                 <div class="content-block">
-                  <h4>Branch 1 (Penang) Router</h4>
+                  <h4>Switch — VLAN 1 Hardening &amp; Port Security (applies to all 3 sites)</h4>
                   <div class="code-block">
-<span class="kw">router ospf</span> 1
- network 172.16.0.0 0.0.255.255 area 0
+<span class="kw">vlan</span> 99
+ name Black_Hole
 <span class="cm">!</span>
-<span class="kw">router bgp</span> 200
- neighbor 203.0.113.5 remote-as 999
- network 172.16.0.0 mask 255.255.0.0
- redistribute ospf 1
+<span class="kw">interface</span> g0/1
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,99
+ switchport trunk native vlan 99
+<span class="cm">!</span>
+<span class="cm">! User-facing access ports</span>
+<span class="kw">interface range</span> f0/1-10
+ switchport mode access
+ switchport access vlan 10
+ switchport port-security
+ switchport port-security maximum 2
+ switchport port-security mac-address sticky
+ switchport port-security violation shutdown
+ spanning-tree portfast
+<span class="cm">!</span>
+<span class="cm">! Unused ports parked in the dead-end VLAN</span>
+<span class="kw">interface range</span> f0/21-24
+ switchport mode access
+ switchport access vlan 99
+ shutdown
                   </div>
                 </div>
-                <div class="content-block">
-                  <h4>ACL — Cross-site Restriction</h4>
-                  <div class="code-block">
-<span class="cm">! Deny Finance VLAN from Branch accessing HQ Finance</span>
-<span class="kw">ip access-list</span> extended CROSS-SITE
- deny ip 172.16.30.0 0.0.0.255 10.30.0.0 0.0.0.255
- permit ip any any
-<span class="cm">!</span>
-<span class="kw">interface</span> Serial0/0
- ip access-group CROSS-SITE in
-                  </div>
-                </div>
               </div>
+
               <div class="tab-content" data-tab="output">
                 <div class="content-block">
-                  <h4>Verification Results</h4>
-                  <div class="result-grid">
-                    <div class="result-item"><div class="r-label">HQ ↔ Branch1</div><div class="r-val">✓ Connected</div></div>
-                    <div class="result-item"><div class="r-label">HQ ↔ Branch2</div><div class="r-val">✓ Connected</div></div>
-                    <div class="result-item"><div class="r-label">Branch1 ↔ Branch2</div><div class="r-val">✓ Connected</div></div>
-                    <div class="result-item"><div class="r-label">Finance Cross-site</div><div class="r-val warn">✗ Blocked (ACL)</div></div>
-                    <div class="result-item"><div class="r-label">BGP Routes</div><div class="r-val blue">3 AS Peered</div></div>
-                    <div class="result-item"><div class="r-label">OSPF Adjacency</div><div class="r-val">✓ Full/DR</div></div>
+                  <h4>Verification Checklist</h4>
+                  <p style="color:var(--muted); font-size:13px; margin-bottom:14px;">Run these commands after configuration to confirm the design works as intended. Expected results below reflect a correctly functioning setup based on the configuration — replace with your actual command output once verified.</p>
+                  <div class="data-table-wrap">
+                    <table class="data-table">
+                      <thead><tr><th>#</th><th>Test</th><th>Expected Result</th></tr></thead>
+                      <tbody>
+                        <tr><td>1</td><td>OSPF adjacency within each site</td><td><span class="status-pill ok">✓ FULL</span> with local VLAN gateways</td></tr>
+                        <tr><td>2</td><td>eBGP peering to ISP</td><td><span class="status-pill ok">✓ Established</span> with ISP (10.0.12.2 / .13.2 / .14.2)</td></tr>
+                        <tr><td>3</td><td>ISP sees all 3 site AS peers</td><td><span class="status-pill ok">✓ 3 neighbors Established</span> — AS 65001, 65002, 65003</td></tr>
+                        <tr><td>4</td><td>Redistribution: OSPF routes visible in BGP</td><td><span class="status-pill ok">✓ Local LAN subnets present</span> as BGP-originated routes</td></tr>
+                        <tr><td>5</td><td>Redistribution: BGP routes visible in OSPF</td><td><span class="status-pill ok">✓ Remote site subnets present</span>, marked <code>O E2</code></td></tr>
+                        <tr><td>6</td><td>Penang User PC → HQ Server</td><td><span class="status-pill ok">✓ Reachable</span></td></tr>
+                        <tr><td>7</td><td>Johor User PC → Penang Server</td><td><span class="status-pill ok">✓ Reachable</span></td></tr>
+                        <tr><td>8</td><td>Cross-site reachability to HQ Mgmt VLAN</td><td><span class="status-pill ok">✓ Reachable</span> — no ACL currently restricts this</td></tr>
+                        <tr><td>9</td><td>Native VLAN hardening</td><td><span class="status-pill ok">✓ Native VLAN 99</span>, not default VLAN 1</td></tr>
+                        <tr><td>10</td><td>Port security on user-facing ports</td><td><span class="status-pill ok">✓ Enabled, Sticky, max 2</span></td></tr>
+                        <tr><td>11</td><td>Unused ports isolated</td><td><span class="status-pill fail">✗ Administratively down</span>, parked in VLAN 99</td></tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
                 <div class="content-block">
                   <h4>What I Learned</h4>
-                  <div class="callout purple">OSPF routes weren't appearing in BGP tables because I forgot the <code>subnets</code> keyword. That one word cost me two hours — and taught me to always check redistribution flags first.</div>
+                  <div class="callout purple">
+                    Redistributing between OSPF and BGP at three separate edge routers made it clear why route redistribution needs to be handled carefully in a real network — each site is only supposed to know about the others' networks through BGP, not absorb their entire internal OSPF topology. Keeping OSPF and BGP as genuinely separate routing domains, only exchanging summarized reachability at the edge, is what actually makes a multi-site design scale without one site's internal changes rippling into another's routing table.
+                  </div>
                 </div>
               </div>
             </div>
           </div><!-- /proj2 -->
 
-          <div class="project-card" id="proj2b">
-            <div class="project-header" onclick="toggleProject('proj2b')">
-              <div class="project-meta">
-                <div class="project-eyebrow">Project 2B · Routing</div>
-                <div class="project-title">Route Redundancy &amp; Failover with OSPF Costs</div>
-                <div class="project-badges">
-                  <span class="badge badge-blue">OSPF</span>
-                  <span class="badge badge-amber">Failover</span>
-                  <span class="badge badge-purple">Cisco PT</span>
-                </div>
-              </div>
-              <div class="project-toggle">⌄</div>
-            </div>
-            <div class="project-body">
-              <div class="tab-bar">
-                <button class="tab-btn active" onclick="switchTab('proj2b','scenario')">Scenario</button>
-                <button class="tab-btn" onclick="switchTab('proj2b','topology')">Topology</button>
-                <button class="tab-btn" onclick="switchTab('proj2b','config')">Config</button>
-                <button class="tab-btn" onclick="switchTab('proj2b','output')">Output</button>
-              </div>
-              <div class="tab-content active" data-tab="scenario">
-                <div class="callout">
-                  <strong style="color:var(--accent)">Coming Soon</strong> — Replace this with your actual project details when ready.
-                </div>
-              </div>
-              <div class="tab-content" data-tab="topology">
-                <div class="topo-placeholder"><div class="topo-icon">🌐</div><p>Topology coming soon.</p><div class="topo-label">[ work in progress ]</div></div>
-              </div>
-              <div class="tab-content" data-tab="config">
-                <div class="content-block"><p style="color:var(--muted)">Configuration details will be added when the lab is complete.</p></div>
-              </div>
-              <div class="tab-content" data-tab="output">
-                <div class="content-block"><p style="color:var(--muted)">Verification output will be added when the lab is complete.</p></div>
-              </div>
-            </div>
-          </div><!-- /proj2b -->
+
+
 
         </div><!-- /cat-group wan -->
 
         <!-- ══ SECURITY CATEGORY ══ -->
         <div class="cat-group" data-cat="sec">
 
-          <div class="project-card" id="proj3">
-            <div class="project-header" onclick="toggleProject('proj3')">
-              <div class="project-meta">
-                <div class="project-eyebrow">Project 3A · Security</div>
-                <div class="project-title">Device Hardening &amp; Site-to-Site VPN</div>
-                <div class="project-badges">
-                  <span class="badge badge-red">VPN</span>
-                  <span class="badge badge-red">Hardening</span>
-                  <span class="badge badge-green">ACL</span>
-                  <span class="badge badge-purple">Cisco PT</span>
-                </div>
-              </div>
-              <div class="project-toggle">⌄</div>
-            </div>
-            <div class="project-body">
-              <div class="tab-bar">
-                <button class="tab-btn active" onclick="switchTab('proj3','scenario')">Scenario</button>
-                <button class="tab-btn" onclick="switchTab('proj3','topology')">Topology</button>
-                <button class="tab-btn" onclick="switchTab('proj3','config')">Config</button>
-                <button class="tab-btn" onclick="switchTab('proj3','output')">Output</button>
-              </div>
-              <div class="tab-content active" data-tab="scenario">
-                <div class="callout">
-                  <strong style="color:var(--accent)">Coming Soon</strong> — Replace this with your actual project details when ready.
-                </div>
-              </div>
-              <div class="tab-content" data-tab="topology">
-                <div class="topo-placeholder"><div class="topo-icon">🔒</div><p>Topology coming soon.</p><div class="topo-label">[ work in progress ]</div></div>
-              </div>
-              <div class="tab-content" data-tab="config">
-                <div class="content-block"><p style="color:var(--muted)">Configuration details will be added when the lab is complete.</p></div>
-              </div>
-              <div class="tab-content" data-tab="output">
-                <div class="content-block"><p style="color:var(--muted)">Verification output will be added when the lab is complete.</p></div>
-              </div>
-            </div>
-          </div><!-- /proj3 -->
 
-          <div class="project-card" id="proj3b">
-            <div class="project-header" onclick="toggleProject('proj3b')">
+          <div class="project-card single-project" id="proj1">
+            <div class="project-header">
               <div class="project-meta">
                 <div class="project-eyebrow">Project 3B · Security</div>
                 <div class="project-title">Firewall Zoning &amp; DMZ Architecture</div>
                 <div class="project-badges">
-                  <span class="badge badge-red">Firewall</span>
+                  <span class="badge badge-red">ASA 5506-X</span>
                   <span class="badge badge-red">DMZ</span>
+                  <span class="badge badge-amber">Port Security</span>
+                  <span class="badge badge-amber">DHCP Snooping</span>
+                  <span class="badge badge-amber">DAI</span>
+                  <span class="badge badge-green">ACL</span>
                   <span class="badge badge-purple">Cisco PT</span>
                 </div>
               </div>
-              <div class="project-toggle">⌄</div>
+
             </div>
             <div class="project-body">
               <div class="tab-bar">
@@ -1267,113 +1429,220 @@ ISP1 ↔ Branch2 203.0.113.8/30
                 <button class="tab-btn" onclick="switchTab('proj3b','config')">Config</button>
                 <button class="tab-btn" onclick="switchTab('proj3b','output')">Output</button>
               </div>
+
               <div class="tab-content active" data-tab="scenario">
-                <div class="callout">
-                  <strong style="color:var(--accent)">Coming Soon</strong> — Replace this with your actual project details when ready.
+                <div class="content-block">
+                  <h4>Background</h4>
+                  <p>TechNova Sdn Bhd needed to expose a small set of services — HTTP, email, and an external-facing FTP server — to outside users, while keeping internal resources like DHCP, internal FTP, NTP, and Syslog fully protected. Previously, no formal perimeter boundary existed between public-facing and internal resources, and internal switch ports had no protection against spoofing or rogue devices.</p>
+                </div>
+                <div class="callout warn">
+                  <strong style="color:var(--warn)">Problem:</strong> Public services and internal resources sat on the same trust level. If a public-facing server were compromised, an attacker would have a direct path into HR, IT, and management VLANs. On top of that, switch ports had no port security, and the network was open to Layer 2 attacks like DHCP spoofing and ARP poisoning.
+                </div>
+                <div class="callout success">
+                  <strong style="color:var(--success)">Solution:</strong> Deploy a Cisco ASA 5506-X as a three-zone firewall — <strong style="color:var(--text)">Inside</strong> (trusted LAN, including DHCP, Internal FTP, NTP, and Syslog services), <strong style="color:var(--text)">DMZ</strong> (public-facing servers), and <strong style="color:var(--text)">Outside</strong> (internet-facing). On the internal switches, layer port hardening, DHCP snooping, and Dynamic ARP Inspection (DAI) to stop Layer 2 attacks, and restrict SSH management access via ACL.
                 </div>
               </div>
+
               <div class="tab-content" data-tab="topology">
-                <div class="topo-placeholder"><div class="topo-icon">🔒</div><p>Topology coming soon.</p><div class="topo-label">[ work in progress ]</div></div>
+                <div class="content-block">
+                  <h4>Network Diagram</h4>
+                  <img src="proj3b-dmz-topology.png"
+                       class="topo-img"
+                       alt="Firewall Zoning & DMZ Topology"
+                       style="max-width: 550px; display: block; margin: 0 auto;"
+                       onclick="openLightbox(this)" />
+                       
+                </div>
+
+                <div class="content-block">
+                  <h4>IP Plan — Internal Zone (3650-Internal)</h4>
+                  <div class="data-table-wrap">
+                    <table class="data-table">
+                      <thead><tr><th>VLAN</th><th>Name</th><th>Subnet</th><th>SVI Gateway</th></tr></thead>
+                      <tbody>
+                        <tr><td>10</td><td>Int-HR</td><td>192.168.10.0/29</td><td>192.168.10.1</td></tr>
+                        <tr><td>20</td><td>Int-IT</td><td>192.168.20.0/30</td><td>192.168.20.1</td></tr>
+                        <tr><td>30</td><td>DHCP-Server</td><td>192.168.30.0/30</td><td>192.168.30.1</td></tr>
+                        <tr><td>40</td><td>FTP-Internal</td><td>192.168.40.0/30</td><td>192.168.40.1</td></tr>
+                        <tr><td>50</td><td>NTP-Syslog</td><td>192.168.50.0/29</td><td>192.168.50.1</td></tr>
+                        <tr><td>99</td><td>MGMT</td><td>192.168.99.0/24</td><td>192.168.99.1</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="content-block">
+                  <h4>IP Plan — DMZ Zone (2960-DMZ, plain switch, no routing)</h4>
+                  <div class="data-table-wrap">
+                    <table class="data-table">
+                      <thead><tr><th>VLAN</th><th>Name</th><th>Subnet</th><th>Gateway (ASA)</th></tr></thead>
+                      <tbody>
+                        <tr><td>50</td><td>DMZ-Servers</td><td>172.16.50.0/29</td><td>172.16.50.1 (Gi1/2)</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="content-block">
+                  <h4>IP Plan — External Zone (3650-External)</h4>
+                  <div class="data-table-wrap">
+                    <table class="data-table">
+                      <thead><tr><th>VLAN</th><th>Name</th><th>Subnet</th><th>SVI Gateway</th></tr></thead>
+                      <tbody>
+                        <tr><td>60</td><td>Ext-HR</td><td>10.0.70.0/29</td><td>10.0.60.1</td></tr>
+                        <tr><td>70</td><td>Ext-IT</td><td>10.0.80.0/29</td><td>10.0.70.1</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="content-block">
+                  <h4>Firewall Links — ASA 5506-X</h4>
+                  <div class="data-table-wrap">
+                    <table class="data-table">
+                      <thead><tr><th>Interface</th><th>Zone</th><th>IP</th><th>Connects To</th></tr></thead>
+                      <tbody>
+                        <tr><td>Gi1/1</td><td>inside</td><td>192.168.1.2/30</td><td>3650-Internal Gi1/0/24 (192.168.1.1)</td></tr>
+                        <tr><td>Gi1/2</td><td>dmz</td><td>172.16.50.1/29</td><td>2960-DMZ (direct)</td></tr>
+                        <tr><td>Gi1/3</td><td>outside</td><td>209.165.200.2/30</td><td>3650-External Gi1/0/24 (209.165.200.1)</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
+
               <div class="tab-content" data-tab="config">
-                <div class="content-block"><p style="color:var(--muted)">Configuration details will be added when the lab is complete.</p></div>
+                <div class="content-block">
+                  <h4>Interfaces &amp; Security Levels</h4>
+                  <div class="code-block">
+<span class="cm">! Inside — connects to 3650-Internal</span>
+<span class="kw">interface</span> g1/1
+ nameif inside
+ sec-level 100
+ ip address 192.168.1.2 255.255.255.252
+ no shut
+<span class="cm">!</span>
+<span class="cm">! DMZ — connects to 2960-DMZ switch</span>
+<span class="kw">interface</span> g1/2
+ nameif dmz
+ sec-level 70
+ ip address 172.16.50.1 255.255.255.248
+ no shut
+<span class="cm">!</span>
+<span class="cm">! Outside — connects to 3650-External</span>
+<span class="kw">interface</span> g1/3
+ nameif outside
+ sec-level 0
+ ip address 209.165.200.2 255.255.255.252
+ no shut
+                  </div>
+                </div>
+
+                <div class="content-block">
+                  <h4>Static Routes &amp; DMZ Access Control</h4>
+                  <div class="code-block">
+route inside 192.168.0.0 255.255.0.0 192.168.1.1
+route outside 10.0.0.0 255.0.0.0 209.165.200.1
+<span class="cm">!</span>
+<span class="cm">! Only allow Outside → DMZ web traffic, nothing else inbound</span>
+<span class="kw">access-list</span> ext-to-dmz extended permit tcp 10.0.0.0 255.0.0.0 host 172.16.50.2 eq 80
+access-group ext-to-dmz in interface outside
+                  </div>
+                </div>
+
+                <div class="content-block">
+                  <h4>NAT / PAT — Inside to Outside</h4>
+                  <div class="code-block">
+<span class="cm">! All internal traffic shares the ASA's outside IP</span>
+<span class="kw">object network</span> inside-net
+ subnet 192.168.0.0 255.255.0.0
+ nat (inside,outside) dynamic interface
+                  </div>
+                </div>
+
+                <div class="content-block">
+                  <h4>Application Inspection Policy</h4>
+                  <div class="code-block">
+<span class="kw">class-map</span> CMAP
+ match default-inspection-traffic
+<span class="cm">!</span>
+<span class="kw">policy-map</span> PMAP
+ class CMAP
+  inspect dns
+  inspect ftp
+  inspect http
+  inspect icmp
+<span class="cm">!</span>
+service-policy PMAP global
+                  </div>
+                </div>
+
+                <div class="content-block">
+                  <h4>Restricted SSH Management Access</h4>
+                  <div class="code-block">
+username admin password ****** 
+ssh 192.168.20.2 255.255.255.255 inside   <span class="cm">! Int-IT PC only</span>
+crypto key generate rsa modulus 2048
+aaa authentication ssh console LOCAL
+                  </div>
+                </div>
               </div>
+
               <div class="tab-content" data-tab="output">
-                <div class="content-block"><p style="color:var(--muted)">Verification output will be added when the lab is complete.</p></div>
+                <div class="content-block">
+                  <h4>Verification Results</h4>
+                  <div class="data-table-wrap">
+                    <table class="data-table">
+                      <thead><tr><th>#</th><th>From</th><th>To</th><th>Result</th></tr></thead>
+                      <tbody>
+                        <tr><td>1</td><td>Int-HR PC</td><td>Int-IT PC</td><td><span class="status-pill ok">✓</span></td></tr>
+                        <tr><td>2</td><td>Int-HR PC</td><td>DHCP (auto IP)</td><td><span class="status-pill ok">✓</span></td></tr>
+                        <tr><td>3</td><td>Int-HR PC</td><td>FTP 192.168.40.2</td><td><span class="status-pill ok">✓ Login</span></td></tr>
+                        <tr><td>4</td><td>Int-HR PC</td><td>HTTP 172.16.50.2 (DMZ)</td><td><span class="status-pill ok">✓ Page loads</span></td></tr>
+                        <tr><td>5</td><td>Ext-HR PC</td><td>HTTP 172.16.50.2 (DMZ)</td><td><span class="status-pill ok">✓ Page loads</span></td></tr>
+                        <tr><td>6</td><td>Ext-HR PC</td><td>192.168.10.2 (Int-HR)</td><td><span class="status-pill fail">✗ Blocked</span></td></tr>
+                        <tr><td>7</td><td>HTTP Server (DMZ)</td><td>192.168.10.2 (Int-HR)</td><td><span class="status-pill fail">✗ Blocked</span></td></tr>
+                        <tr><td>8</td><td>Int-HR PC</td><td>NTP/Syslog (192.168.50.x)</td><td><span class="status-pill fail">✗ Blocked</span></td></tr>
+                        <tr><td>9</td><td>Int-HR PC</td><td>SSH to Internal switch</td><td><span class="status-pill fail">✗ Blocked</span></td></tr>
+                        <tr><td>10</td><td>Int-IT PC</td><td>SSH to Internal switch</td><td><span class="status-pill ok">✓ Login</span></td></tr>
+                        <tr><td>11</td><td>Ext-HR</td><td>External DHCP (auto IP)</td><td><span class="status-pill ok">✓</span></td></tr>
+                        <tr><td>12</td><td>Internal switch</td><td><code>sh ntp associations</code></td><td><span class="status-pill ok">✓ Synced</span></td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="evidence-gallery">
+                    <div class="evidence-item">
+                      <img src="proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 12</strong> — NTP authentication synced</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div><!-- /proj3b -->
 
         </div><!-- /cat-group sec -->
 
-        <!-- ══ MONITORING CATEGORY ══ -->
-        <div class="cat-group" data-cat="mon">
-
-          <div class="project-card" id="proj4">
-            <div class="project-header" onclick="toggleProject('proj4')">
-              <div class="project-meta">
-                <div class="project-eyebrow">Project 4A · Monitoring & Automation</div>
-                <div class="project-title">Network monitoring &amp; Python automation</div>
-                <div class="project-badges">
-                  <span class="badge badge-red">Python (netmiko)</span>
-                  <span class="badge badge-red">Zabbix</span>
-                  <span class="badge badge-green">SNMP</span>
-                  <span class="badge badge-purple">AutomationT</span>
-                </div>
-              </div>
-              <div class="project-toggle">⌄</div>
-            </div>
-            <div class="project-body">
-              <div class="tab-bar">
-                <button class="tab-btn active" onclick="switchTab('proj4','scenario')">Scenario</button>
-                <button class="tab-btn" onclick="switchTab('proj4','topology')">Topology</button>
-                <button class="tab-btn" onclick="switchTab('proj4','config')">Config</button>
-                <button class="tab-btn" onclick="switchTab('proj4','output')">Output</button>
-              </div>
-              <div class="tab-content active" data-tab="scenario">
-                <div class="callout">
-                  <strong style="color:var(--accent)">Coming Soon</strong> — Replace this with your actual project details when ready.
-                </div>
-              </div>
-              <div class="tab-content" data-tab="topology">
-                <div class="topo-placeholder"><div class="topo-icon">🔒</div><p>Topology coming soon.</p><div class="topo-label">[ work in progress ]</div></div>
-              </div>
-              <div class="tab-content" data-tab="config">
-                <div class="content-block"><p style="color:var(--muted)">Configuration details will be added when the lab is complete.</p></div>
-              </div>
-              <div class="tab-content" data-tab="output">
-                <div class="content-block"><p style="color:var(--muted)">Verification output will be added when the lab is complete.</p></div>
-              </div>
-            </div>
-          </div><!-- /proj4 -->
-
-          <div class="project-card" id="proj4b">
-            <div class="project-header" onclick="toggleProject('proj4b')">
-              <div class="project-meta">
-                <div class="project-eyebrow">Project 4B · Monitoring & Automation</div>
-                <div class="project-title">Ansible-based config management</div>
-                <div class="project-badges">
-                  <span class="badge badge-red">Ansible</span>
-                  <span class="badge badge-red">YAML</span>
-                  <span class="badge badge-purple">Config Management</span>
-                  <span class="badge badge-purple">IaC Concepts</span>
-                </div>
-              </div>
-              <div class="project-toggle">⌄</div>
-            </div>
-            <div class="project-body">
-              <div class="tab-bar">
-                <button class="tab-btn active" onclick="switchTab('proj4b','scenario')">Scenario</button>
-                <button class="tab-btn" onclick="switchTab('proj4b','topology')">Topology</button>
-                <button class="tab-btn" onclick="switchTab('proj4b','config')">Config</button>
-                <button class="tab-btn" onclick="switchTab('proj4b','output')">Output</button>
-              </div>
-              <div class="tab-content active" data-tab="scenario">
-                <div class="callout">
-                  <strong style="color:var(--accent)">Coming Soon</strong> — Replace this with your actual project details when ready.
-                </div>
-              </div>
-              <div class="tab-content" data-tab="topology">
-                <div class="topo-placeholder"><div class="topo-icon">🔒</div><p>Topology coming soon.</p><div class="topo-label">[ work in progress ]</div></div>
-              </div>
-              <div class="tab-content" data-tab="config">
-                <div class="content-block"><p style="color:var(--muted)">Configuration details will be added when the lab is complete.</p></div>
-              </div>
-              <div class="tab-content" data-tab="output">
-                <div class="content-block"><p style="color:var(--muted)">Verification output will be added when the lab is complete.</p></div>
-              </div>
-            </div>
-          </div><!-- /proj4b -->
-
-        </div><!-- /cat-group mon -->
-
         <!-- ══ ANALYSIS CATEGORY ══ -->
         <div class="cat-group" data-cat="anal">
 
-          <div class="project-card" id="proj5">
-            <div class="project-header" onclick="toggleProject('proj5')">
+          <div class="project-card single-project" id="proj5">
+            <div class="project-header">
               <div class="project-meta">
-                <div class="project-eyebrow">Project 5A · Traffic Analysis</div>
+                <div class="project-eyebrow">Project 4A · Traffic Analysis</div>
                 <div class="project-title">Traffic fault diagnosis with Wireshark</div>
                 <div class="project-badges">
                   <span class="badge badge-red">Wireshark</span>
@@ -1382,7 +1651,7 @@ ISP1 ↔ Branch2 203.0.113.8/30
                   <span class="badge badge-purple">OSPF diagnostics</span>
                 </div>
               </div>
-              <div class="project-toggle">⌄</div>
+
             </div>
             <div class="project-body">
               <div class="tab-bar">
@@ -1408,44 +1677,6 @@ ISP1 ↔ Branch2 203.0.113.8/30
             </div>
           </div><!-- /proj5 -->
 
-          <div class="project-card" id="proj5b">
-            <div class="project-header" onclick="toggleProject('proj5b')">
-              <div class="project-meta">
-                <div class="project-eyebrow">Project 5B · Traffic Analysis</div>
-                <div class="project-title">Bandwidth analysis & traffic baseline</div>
-                <div class="project-badges">
-                  <span class="badge badge-red">Traffic baselining</span>
-                  <span class="badge badge-red">Wireshark I/O graphs</span>
-                  <span class="badge badge-purple">Protocol analysis</span>
-                  <span class="badge badge-purple">Anomaly detection</span>
-                </div>
-              </div>
-              <div class="project-toggle">⌄</div>
-            </div>
-            <div class="project-body">
-              <div class="tab-bar">
-                <button class="tab-btn active" onclick="switchTab('proj5b','scenario')">Scenario</button>
-                <button class="tab-btn" onclick="switchTab('proj5b','topology')">Topology</button>
-                <button class="tab-btn" onclick="switchTab('proj5b','config')">Config</button>
-                <button class="tab-btn" onclick="switchTab('proj5b','output')">Output</button>
-              </div>
-              <div class="tab-content active" data-tab="scenario">
-                <div class="callout">
-                  <strong style="color:var(--accent)">Coming Soon</strong> — Replace this with your actual project details when ready.
-                </div>
-              </div>
-              <div class="tab-content" data-tab="topology">
-                <div class="topo-placeholder"><div class="topo-icon">🔒</div><p>Topology coming soon.</p><div class="topo-label">[ work in progress ]</div></div>
-              </div>
-              <div class="tab-content" data-tab="config">
-                <div class="content-block"><p style="color:var(--muted)">Configuration details will be added when the lab is complete.</p></div>
-              </div>
-              <div class="tab-content" data-tab="output">
-                <div class="content-block"><p style="color:var(--muted)">Verification output will be added when the lab is complete.</p></div>
-              </div>
-            </div>
-          </div><!-- /proj5b -->
-
         </div><!-- /cat-group anal -->
 
       </div><!-- /projects-pane -->
@@ -1462,22 +1693,22 @@ ISP1 ↔ Branch2 203.0.113.8/30
 
     <div class="timeline">
 
-      <!-- ══ 2024 ══ -->
+      <!-- ══ 2021 ══ -->
       <div class="tl-year-block" data-tl>
         <div class="tl-year-label">
           <div class="tl-dot"></div>
           <div>
-            <div class="tl-year">2024</div>
-            <div class="tl-year-sub">// Final Year</div>
+            <div class="tl-year">2021</div>
+            <div class="tl-year-sub">// Building the Foundation</div>
           </div>
         </div>
         <div class="tl-items">
           <div class="tl-item" data-tl-item>
-            <div class="tl-item-icon">🏆</div>
+            <div class="tl-item-icon">📝</div>
             <div class="tl-item-body">
-              <div class="tl-item-title">Involvement Title Here</div>
+              <div class="tl-item-title">Secretary · Leadership Club</div>
               <div class="tl-item-role">Role · Organisation</div>
-              <div class="tl-item-desc">Describe what you did and your contribution. Replace with your real involvement — keep it specific and outcome-focused.</div>
+              <div class="tl-item-desc">My leadership journey started from a behind-the-scenes role: the secretary. While the position may appear administrative, I quickly learnt that effective teamwork depends heavily on organisation, communication, and attention to detail.</div>
             </div>
           </div>
           <div class="tl-item" data-tl-item>
@@ -1491,13 +1722,13 @@ ISP1 ↔ Branch2 203.0.113.8/30
         </div>
       </div>
 
-      <!-- ══ 2023 ══ -->
+      <!-- ══ 2022 ══ -->
       <div class="tl-year-block" data-tl>
         <div class="tl-year-label">
           <div class="tl-dot"></div>
           <div>
-            <div class="tl-year">2023</div>
-            <div class="tl-year-sub">// Third Year</div>
+            <div class="tl-year">2022</div>
+            <div class="tl-year-sub">// Second Year</div>
           </div>
         </div>
         <div class="tl-items">
@@ -1520,13 +1751,13 @@ ISP1 ↔ Branch2 203.0.113.8/30
         </div>
       </div>
 
-      <!-- ══ 2022 ══ -->
+      <!-- ══ 2023 ══ -->
       <div class="tl-year-block" data-tl>
         <div class="tl-year-label">
           <div class="tl-dot"></div>
           <div>
-            <div class="tl-year">2022</div>
-            <div class="tl-year-sub">// Second Year</div>
+            <div class="tl-year">2023</div>
+            <div class="tl-year-sub">// Third Year</div>
           </div>
         </div>
         <div class="tl-items">
@@ -1549,13 +1780,13 @@ ISP1 ↔ Branch2 203.0.113.8/30
         </div>
       </div>
 
-      <!-- ══ 2021 ══ -->
+      <!-- ══ 2024 ══ -->
       <div class="tl-year-block" data-tl>
         <div class="tl-year-label">
           <div class="tl-dot"></div>
           <div>
-            <div class="tl-year">2021</div>
-            <div class="tl-year-sub">// First Year</div>
+            <div class="tl-year">2024</div>
+            <div class="tl-year-sub">// Final Year</div>
           </div>
         </div>
         <div class="tl-items">
@@ -1582,45 +1813,29 @@ ISP1 ↔ Branch2 203.0.113.8/30
   </section>
 </div>
 
-<!-- ─── ABOUT ─── -->
+<!-- ─── CONTACT ─── -->
 <div class="page">
-  <section id="about">
-    <div class="section-label">// About Me</div>
-    <h2 class="section-title">Who I Am</h2>
+  <section id="contact">
+    <div class="section-label">// Get In Touch</div>
+    <h2 class="section-title">Contact</h2>
+    <p class="section-sub">Feel free to reach out — I'm always happy to talk networking, security, or opportunities.</p>
 
-    <div class="about-grid">
-      <div>
-        <p class="about-text">
-          <p>I'm a Computer Networking student based in Malaysia, passionate about building and securing networks that actually work at scale. My labs are built in Cisco Packet Tracer with real enterprise scenarios in mind.</p>
-          <p style="margin-top:14px">I'm most interested in WAN architecture, network security, and eventually pursuing a career in network engineering or security operations.</p>
-          <p style="margin-top:14px">Outside of the lab, I'm involved in student leadership and enjoy breaking down complex network concepts for classmates.</p>
-        </p>
-      </div>
-      <div>
-        <div class="contact-links">
-          <a href="mailto:your@email.com" class="contact-link">
-            <span class="cl-icon">✉</span>
-            <div>
-              <div>your@email.com</div>
-              <div class="cl-label">Email</div>
-            </div>
-          </a>
-          <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">
-            <span class="cl-icon">💼</span>
-            <div>
-              <div>linkedin.com/in/yourprofile</div>
-              <div class="cl-label">LinkedIn</div>
-            </div>
-          </a>
-          <a href="https://github.com/yourusername" class="contact-link" target="_blank">
-            <span class="cl-icon">⌥</span>
-            <div>
-              <div>github.com/yourusername</div>
-              <div class="cl-label">GitHub</div>
-            </div>
-          </a>
+    <div class="contact-links" style="max-width:420px;">
+      <a href="mailto:firyaliman@gmail.com" class="contact-link">
+        <span class="cl-icon">✉</span>
+        <div>
+          <div>firyaliman@gmail.com</div>
+          <div class="cl-label">Email</div>
         </div>
-      </div>
+      </a>
+      <a href="www.linkedin.com/in/firyaliman" class="contact-link" target="_blank">
+        <span class="cl-icon">💼</span>
+        <div>
+          <div>linkedin.com/in/firyaliman</div>
+          <div class="cl-label">LinkedIn</div>
+        </div>
+      </a>
+      
     </div>
   </section>
 </div>
@@ -1633,7 +1848,7 @@ ISP1 ↔ Branch2 203.0.113.8/30
 </div>
 
 <footer>
-  <div>© 2026 Network Security Portfolio</div>
+  <div>© 2026 Firyal Iman's</div>
 </footer>
 
 <script>
@@ -1675,39 +1890,13 @@ ISP1 ↔ Branch2 203.0.113.8/30
 
   document.querySelectorAll('[data-tl]').forEach(el => tlObserver.observe(el));
 
-  // ─── Counter animation ───
-  function animateCounter(el, target, suffix, duration) {
-    let start = 0;
-    const step = Math.ceil(duration / target);
-    const timer = setInterval(() => {
-      start++;
-      el.textContent = start + suffix;
-      if (start >= target) {
-        el.textContent = target + suffix;
-        clearInterval(timer);
-      }
-    }, step);
-  }
-
-  // Trigger when the stat scrolls into view
-  const statEl = document.getElementById('stat-projects');
-  let counted = false;
-  const observer = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting && !counted) {
-      counted = true;
-      animateCounter(statEl, 12, '+', 800);
-    }
-  }, { threshold: 0.5 });
-  observer.observe(statEl);
-
   // ─── Category switching ───
-  const catCounts = { lan: 2, wan: 2, sec: 2, mon: 2, anal: 2 };
+  const catCounts = { lan: 1, wan: 1, sec: 1, anal: 1 };
   const catLabels = {
-    lan: '2 projects',
-    wan: '2 projects',
-    sec: '2 projects',
-    mon: '2 projects',
-    anal: '2 projects'
+    lan: '1 project',
+    wan: '1 project',
+    sec: '1 project',
+    anal: '1 project'
   };
 
   // Set count labels on load
