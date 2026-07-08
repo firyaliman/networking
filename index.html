@@ -7,6 +7,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
+    /* ─── Right-click / copy protection ─── */
+    * {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    img {
+      -webkit-user-drag: none;
+      user-drag: none;
+    }
+
     /* ─── Design Tokens ─── */
     :root {
       --bg:       #0b0f1a;
@@ -27,6 +39,17 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    img {
+      -webkit-user-drag: none;
+      user-drag: none;
+      pointer-events: auto;
+    }
 
     html { scroll-behavior: smooth; }
 
@@ -619,6 +642,20 @@
     }
     .evidence-caption strong { color: var(--text); }
 
+    /* ─── Involvement section photo frames (smaller than project screenshots) ─── */
+    .tl-item .evidence-gallery {
+      grid-template-columns: repeat(auto-fit, minmax(90px, 100px));
+      gap: 10px;
+    }
+    .tl-item .evidence-thumb {
+      aspect-ratio: 1 / 1;
+      border-radius: 10px;
+    }
+    .tl-item .evidence-caption {
+      font-size: 9.5px;
+      text-align: center;
+    }
+
     /* ─── Lightbox ─── */
     .topo-img {
       width: 100%;
@@ -1015,7 +1052,7 @@
               <div class="tab-content" data-tab="topology">
                 <div class="content-block">
                   <h4>Network Diagram</h4>
-                  <img src="images/proj1-hotel-topology.png"
+                  <img src="proj1_image/proj1-hotel-topology.png"
                        class="topo-img"
                        alt="Hotel Campus Network Topology"
                        style="max-width: 550px; display: block; margin: 0 auto;"
@@ -1260,7 +1297,7 @@ Core-MLS-1(config-router)#network 10.99.99.0 0.0.0.255 area 0
               <div class="tab-content" data-tab="topology">
                 <div class="content-block">
                   <h4>Network Diagram</h4>
-                  <img src="images/proj3-wan-topology.png"
+                  <img src="proj2_image/proj2-wan-topology.png"
                        class="topo-img"
                        alt="Hotel Campus Network Topology"
                        style="max-width: 550px; display: block; margin: 0 auto;"
@@ -1513,7 +1550,7 @@ Core-MLS-1(config-router)#network 10.99.99.0 0.0.0.255 area 0
               <div class="tab-content" data-tab="topology">
                 <div class="content-block">
                   <h4>Network Diagram</h4>
-                  <img src="images/proj3b-dmz-topology.png"
+                  <img src="proj3_image/proj3b-dmz-topology.png"
                        class="topo-img"
                        alt="Firewall Zoning & DMZ Topology"
                        style="max-width: 550px; display: block; margin: 0 auto;"
@@ -1680,19 +1717,19 @@ aaa authentication ssh console LOCAL
 
                   <div class="evidence-gallery">
                     <div class="evidence-item">
-                      <img src="images/proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
+                      <img src="proj3_image/proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
                       <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
                     </div>
                     <div class="evidence-item">
-                      <img src="images/proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
+                      <img src="proj3_image/proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
                       <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
                     </div>
                     <div class="evidence-item">
-                      <img src="images/proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
+                      <img src="proj3_image/proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
                       <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
                     </div>
                     <div class="evidence-item">
-                      <img src="images/proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
+                      <img src="proj3_image/proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
                       <div class="evidence-caption"><strong>Test 12</strong> — NTP authentication synced</div>
                     </div>
                   </div>
@@ -1784,22 +1821,14 @@ aaa authentication ssh console LOCAL
               </ul>
                   <div class="evidence-gallery">
                     <div class="evidence-item">
-                      <img src="proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
+                      <img src="images/2021_leaders(1).png" class="evidence-thumb" alt="Leadership Club committee activity" onclick="openLightbox(this)" />
+                      <div class="evidence-caption">Leadership Club committee</div>
                     </div>
                     <div class="evidence-item">
-                      <img src="proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
+                      <img src="images/2021_leaders(2).jpg" class="evidence-thumb" alt="Leadership Club committee activity" onclick="openLightbox(this)" />
+                      <div class="evidence-caption">Leadership Club committee</div>
                     </div>
-                    <div class="evidence-item">
-                      <img src="proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
-                    </div>
-                    <div class="evidence-item">
-                      <img src="proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 12</strong> — NTP authentication synced</div>
-                    </div>
-		</div>
+                  </div>
             </div>
           </div>
           <div class="tl-item" data-tl-item>
@@ -1816,21 +1845,14 @@ aaa authentication ssh console LOCAL
 	      </ul>
                   <div class="evidence-gallery">
                     <div class="evidence-item">
-                      <img src="proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
+                      <img src="images/2021_ultras(1).png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
                       <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
                     </div>
                     <div class="evidence-item">
-                      <img src="proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
+                      <img src="images/2021_ultras(2).jpg" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
                       <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
                     </div>
-                    <div class="evidence-item">
-                      <img src="proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
-                    </div>
-                    <div class="evidence-item">
-                      <img src="proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 12</strong> — NTP authentication synced</div>
-                    </div>
+                   
 		</div>
             </div>
           </div>
@@ -1846,28 +1868,10 @@ aaa authentication ssh console LOCAL
   	        <li>Assisted in coordinating election logistics, announcements, and communication with university management.</li>
  		<li>Supported the execution of a three-week election timeline involving candidate registration, manifesto preparation, and voting arrangements.</li>
 	      </ul>
-                  <div class="evidence-gallery">
-                    <div class="evidence-item">
-                      <img src="proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
-                    </div>
-                    <div class="evidence-item">
-                      <img src="proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
-                    </div>
-                    <div class="evidence-item">
-                      <img src="proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
-                    </div>
-                    <div class="evidence-item">
-                      <img src="proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 12</strong> — NTP authentication synced</div>
-                    </div>
 		</div>
             </div>
           </div>
         </div>
-      </div>
 
       <!-- ══ 2022 ══ -->
       <div class="tl-year-block" data-tl>
@@ -1893,22 +1897,14 @@ aaa authentication ssh console LOCAL
 	      </ul>
                   <div class="evidence-gallery">
                     <div class="evidence-item">
-                      <img src="proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
+                      <img src="images/2022_leaders(1).png" class="evidence-thumb" alt="Leadership Club committee activity" onclick="openLightbox(this)" />
+                      <div class="evidence-caption">Leadership Club committee</div>
                     </div>
                     <div class="evidence-item">
-                      <img src="proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
+                      <img src="images/2022_leaders(2).jpg" class="evidence-thumb" alt="Leadership Club committee activity" onclick="openLightbox(this)" />
+                      <div class="evidence-caption">Leadership Club committee</div>
                     </div>
-                    <div class="evidence-item">
-                      <img src="proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
-                    </div>
-                    <div class="evidence-item">
-                      <img src="proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 12</strong> — NTP authentication synced</div>
-                    </div>
-		</div>
+                  </div>
             </div>
           </div>
           <div class="tl-item" data-tl-item>
@@ -1926,22 +1922,18 @@ aaa authentication ssh console LOCAL
 	      </ul>
                   <div class="evidence-gallery">
                     <div class="evidence-item">
-                      <img src="proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
+                      <img src="images/2022_great(1).jfif" class="evidence-thumb" alt="GREAT programme activity" onclick="openLightbox(this)" />
+                      <div class="evidence-caption">GREAT programme</div>
                     </div>
                     <div class="evidence-item">
-                      <img src="proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
+                      <img src="images/2022_great(2).jfif" class="evidence-thumb" alt="GREAT programme activity" onclick="openLightbox(this)" />
+                      <div class="evidence-caption">GREAT programme</div>
                     </div>
                     <div class="evidence-item">
-                      <img src="proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
+                      <img src="images/2022_great(3).jpg" class="evidence-thumb" alt="GREAT programme activity" onclick="openLightbox(this)" />
+                      <div class="evidence-caption">GREAT programme</div>
                     </div>
-                    <div class="evidence-item">
-                      <img src="proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 12</strong> — NTP authentication synced</div>
-                    </div>
-		</div>
+                  </div>
             </div>
           </div>
           <div class="tl-item" data-tl-item>
@@ -1957,24 +1949,6 @@ aaa authentication ssh console LOCAL
  		<li>Successfully conducted the first face-to-face SRC manifesto session and voting process after three years of online elections.</li>
 		<li>Increased voter participation from 34.63% (2021) to 49.05% (2022), achieving the highest voter turnout among seven UniKL campuses.</li>
 	      </ul>
-                  <div class="evidence-gallery">
-                    <div class="evidence-item">
-                      <img src="proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
-                    </div>
-                    <div class="evidence-item">
-                      <img src="proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
-                    </div>
-                    <div class="evidence-item">
-                      <img src="proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
-                    </div>
-                    <div class="evidence-item">
-                      <img src="proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 12</strong> — NTP authentication synced</div>
-                    </div>
-		</div>
             </div>
           </div>
           <div class="tl-item" data-tl-item>
@@ -1991,22 +1965,19 @@ aaa authentication ssh console LOCAL
 	      </ul>
                   <div class="evidence-gallery">
                     <div class="evidence-item">
-                      <img src="proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
+                      <img src="images/2022_wow(1).jpg" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
                       <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
                     </div>
                     <div class="evidence-item">
-                      <img src="proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
+                      <img src="images/2022_wow(2).jpg" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
                       <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
                     </div>
                     <div class="evidence-item">
-                      <img src="proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
+                      <img src="images/2022_wow(3).jpg" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
                       <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
                     </div>
-                    <div class="evidence-item">
-                      <img src="proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 12</strong> — NTP authentication synced</div>
-                    </div>
-		</div>
+
+            </div>
             </div>
           </div>
         </div>
@@ -2037,21 +2008,18 @@ aaa authentication ssh console LOCAL
 	      </ul>
                   <div class="evidence-gallery">
                     <div class="evidence-item">
-                      <img src="proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
+                      <img src="images/2023_wow(1).jpg" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
                       <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
                     </div>
                     <div class="evidence-item">
-                      <img src="proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
+                      <img src="images/2023_wow(2).jpg" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
                       <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
                     </div>
                     <div class="evidence-item">
-                      <img src="proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
+                      <img src="images/2023_wow(3).jpg" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
                       <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
                     </div>
-                    <div class="evidence-item">
-                      <img src="proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 12</strong> — NTP authentication synced</div>
-                    </div>
+
 		</div>
             </div>
           </div>
@@ -2069,21 +2037,18 @@ aaa authentication ssh console LOCAL
 	      </ul>
                   <div class="evidence-gallery">
                     <div class="evidence-item">
-                      <img src="proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
+                      <img src="images/2023_wow(4).jpg" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
                       <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
                     </div>
                     <div class="evidence-item">
-                      <img src="proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
+                      <img src="images/2023_wow(5).jpg" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
                       <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
                     </div>
                     <div class="evidence-item">
-                      <img src="proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
+                      <img src="images/2023_wow(6).jpg" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
                       <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
                     </div>
-                    <div class="evidence-item">
-                      <img src="proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 12</strong> — NTP authentication synced</div>
-                    </div>
+                 
             </div>
            </div>
           </div>
@@ -2115,21 +2080,14 @@ aaa authentication ssh console LOCAL
 	      </ul>
                   <div class="evidence-gallery">
                     <div class="evidence-item">
-                      <img src="proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
+                      <img src="images/2024_telecom(1).jpg" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
                       <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
                     </div>
                     <div class="evidence-item">
-                      <img src="proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
+                      <img src="images/2024_telecom(2).jpg" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
                       <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
                     </div>
-                    <div class="evidence-item">
-                      <img src="proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
-                    </div>
-                    <div class="evidence-item">
-                      <img src="proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 12</strong> — NTP authentication synced</div>
-                    </div>
+                   
             </div>
            </div>
           </div>
@@ -2161,23 +2119,21 @@ aaa authentication ssh console LOCAL
 	      </ul>
                   <div class="evidence-gallery">
                     <div class="evidence-item">
-                      <img src="proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
+                      <img src="images/2025_tm(1).jfif" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
                       <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
                     </div>
                     <div class="evidence-item">
-                      <img src="proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
+                      <img src="images/2025_tm(2).jfif" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
                       <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
                     </div>
                     <div class="evidence-item">
-                      <img src="proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
+                      <img src="images/2025_tm(3).jfif" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
                       <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
-                    </div>
-                    <div class="evidence-item">
-                      <img src="proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 12</strong> — NTP authentication synced</div>
                     </div>
             </div>
           </div>
+        </div>
+      </div>
 
     </div><!-- /timeline -->
   </section>
@@ -2312,6 +2268,17 @@ aaa authentication ssh console LOCAL
     if (clickedBtn) clickedBtn.classList.add('active');
     if (targetContent) targetContent.classList.add('active');
   }
+  // ─── Basic copy/save protection (deterrent only, not foolproof) ───
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  document.addEventListener('dragstart', e => e.preventDefault());
+  document.addEventListener('selectstart', e => e.preventDefault());
+  document.addEventListener('keydown', e => {
+    const key = e.key.toLowerCase();
+    const blockedCombo = (e.ctrlKey || e.metaKey) && ['c', 's', 'u', 'p'].includes(key);
+    if (blockedCombo || key === 'f12') {
+      e.preventDefault();
+    }
+  });
 </script>
 </body>
 </html>
