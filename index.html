@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio — Network & Security Projects</title>
+  <title>Networking by Iman</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
@@ -18,8 +18,8 @@
       --success:  #34d399;
       --warn:     #fbbf24;
       --text:     #e2e8f0;
-      --muted:    #64748b;
-      --dim:      #334155;
+      --muted:    #94a3b8;
+      --dim:      #64748b;
       --mono:     'JetBrains Mono', monospace;
       --sans:     'Inter', sans-serif;
       --radius:   10px;
@@ -352,6 +352,28 @@
     .badge-green  { background: #34d39920; color: var(--success); border: 1px solid #34d39940; }
     .badge-amber  { background: #fbbf2420; color: var(--warn);    border: 1px solid #fbbf2440; }
     .badge-red    { background: #f8717120; color: #f87171;        border: 1px solid #f8717140; }
+
+    /* ─── Tag Legend ─── */
+    .tag-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin: -20px 0 32px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .tag-legend .lg-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tag-legend .lg-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
     .badge-pink   { background: #f252aa20; color: #f252aa;        border: 1px solid #f252aa40; }
 
     .project-toggle {
@@ -777,9 +799,26 @@
     }
     .tl-item-desc {
       font-size: 13px;
-      color: #64748b;
+      color: #94a3b8;
       line-height: 1.7;
     }
+    .tl-item-subhead {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin: 12px 0 6px;
+    }
+    .tl-item-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 1.7;
+    }
+    .tl-item-list li { margin-bottom: 4px; }
+    .tl-item-list li::marker { color: var(--accent2); }
 
     /* ─── About / Contact ─── */
     .about-grid {
@@ -844,7 +883,7 @@
 <!-- ─── NAV ─── -->
 <nav>
   <div class="nav-inner">
-    <div class="nav-logo"><span>~/</span>portfolio<span>.net</span></div>
+    <div class="nav-logo">₍^. .^₎Ⳋ</div>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#projects">Projects</a></li>
@@ -864,15 +903,17 @@
       </div>
     </div>
     <div>
-      <div class="hero-eyebrow">// Network & Security Engineer</div>
-      <h1 class="hero-name">Your Name<br><em>Here.</em></h1>
+      <h1 class="hero-name">Networking by<br><em>Iman.</em></h1>
       <div class="about-intro" style="margin-top:18px;">
-        <p>I'm a Computer Networking student based in Malaysia, passionate about building and securing networks that actually work at scale. My labs are built in Cisco Packet Tracer with real enterprise scenarios in mind.</p>
-        <p>I'm most interested in WAN architecture, network security, and eventually pursuing a career in network engineering or security operations. Outside of the lab, I'm involved in student leadership and enjoy breaking down complex network concepts for classmates.</p>
+        <p>Hi, I'm Iman! 👋 A Telecommunication Engineering graduate with a growing passion for enterprise networking and cybersecurity. I enjoy designing networks that are practical, resilient and secure, and I love turning complex networking concepts into hands-on projects that reflect real business environments.</p>
+        <p>Every project in this portfolio represents a step in my learning journey. From planning and implementation to testing and troubleshooting, I enjoy understanding not just how a solution works, but why it's designed that way.</p>
+        <p>I've spent countless hours designing, configuring, breaking and rebuilding networks in my lab. Now, I'm looking forward to taking that curiosity into a real engineering environment, where I can learn from experienced engineers, contribute to production networks, and continue growing as a Network Engineer.</p>
+        <p>When I'm not building labs, you'll probably find me refining my portfolio, learning something new, or figuring out why a configuration that worked five minutes ago has suddenly decided not to.</p>
       </div>
 
     </div>
   </div>
+  </section>
 </div>
 
 <!-- ─── PROJECTS ─── -->
@@ -881,6 +922,14 @@
     <div class="section-label">// Case Studies</div>
     <h2 class="section-title">Network Projects</h2>
     <p class="section-sub">Select a focus area on the left, then expand any project to walk through it tab by tab.</p>
+
+    <div class="tag-legend">
+      <div class="lg-item"><span class="lg-dot" style="background:var(--accent)"></span> Switching</div>
+      <div class="lg-item"><span class="lg-dot" style="background:var(--accent2)"></span> Routing</div>
+      <div class="lg-item"><span class="lg-dot" style="background:#f87171"></span> Security</div>
+      <div class="lg-item"><span class="lg-dot" style="background:var(--warn)"></span> Tools &amp; Platforms</div>
+      <div class="lg-item"><span class="lg-dot" style="background:var(--success)"></span> Analysis</div>
+    </div>
 
     <!-- mobile pill tabs (visible only on small screens) -->
     <div class="cat-pill-tabs" id="cat-pills">
@@ -934,14 +983,16 @@
             <div class="project-header">
               <div class="project-meta">
                 <div class="project-eyebrow">Project 1A · LAN Design &amp; Switching</div>
-                <div class="project-title">Hotel Campus Network — Dual-Core Redundancy &amp; Segmentation</div>
+                <div class="project-title">Enterprise Campus LAN Redesign &amp; High Availability</div>
                 <div class="project-badges">
                   <span class="badge badge-blue">HSRP</span>
-                  <span class="badge badge-blue">EtherChannel</span>
-                  <span class="badge badge-amber">VLAN Segmentation</span>
-                  <span class="badge badge-green">Port Security</span>
+                  <span class="badge badge-blue">RSTP</span>
+                  <span class="badge badge-blue">LACP EtherChannel</span>
+                  <span class="badge badge-blue">VLAN Segmentation</span>
+                  <span class="badge badge-red">Port Security</span>
+                  <span class="badge badge-red">ACL</span>
                   <span class="badge badge-purple">OSPF (edge)</span>
-                  <span class="badge badge-purple">Cisco PT</span>
+                  <span class="badge badge-amber">Cisco IOS</span>
                 </div>
               </div>
 
@@ -1180,11 +1231,12 @@ Core-MLS-1(config-router)#network 10.99.99.0 0.0.0.255 area 0
                 <div class="project-eyebrow">Project 2A · Routing &amp; WAN</div>
                 <div class="project-title">Multi-Site WAN Routing with OSPF &amp; BGP</div>
                 <div class="project-badges">
-                  <span class="badge badge-blue">OSPF</span>
+                  <span class="badge badge-purple">OSPF</span>
                   <span class="badge badge-purple">eBGP</span>
-                  <span class="badge badge-amber">Route Redistribution</span>
-                  <span class="badge badge-green">VLAN Hardening</span>
-                  <span class="badge badge-purple">Cisco PT</span>
+                  <span class="badge badge-purple">Route Redistribution</span>
+                  <span class="badge badge-blue">VLAN Hardening</span>
+                  <span class="badge badge-red">ACL</span>
+                  <span class="badge badge-amber">Cisco PT</span>
                 </div>
               </div>
 
@@ -1385,6 +1437,24 @@ Core-MLS-1(config-router)#network 10.99.99.0 0.0.0.255 area 0
                       </tbody>
                     </table>
                   </div>
+                  <div class="evidence-gallery">
+                    <div class="evidence-item">
+                      <img src="proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 12</strong> — NTP authentication synced</div>
+                    </div>
+		</div>
                 </div>
                 <div class="content-block">
                   <h4>What I Learned</h4>
@@ -1409,15 +1479,17 @@ Core-MLS-1(config-router)#network 10.99.99.0 0.0.0.255 area 0
             <div class="project-header">
               <div class="project-meta">
                 <div class="project-eyebrow">Project 3B · Security</div>
-                <div class="project-title">Firewall Zoning &amp; DMZ Architecture</div>
+                <div class="project-title">Enterprise Firewall Zoning &amp; DMZ Security Architecture</div>
                 <div class="project-badges">
                   <span class="badge badge-red">ASA 5506-X</span>
                   <span class="badge badge-red">DMZ</span>
-                  <span class="badge badge-amber">Port Security</span>
-                  <span class="badge badge-amber">DHCP Snooping</span>
-                  <span class="badge badge-amber">DAI</span>
-                  <span class="badge badge-green">ACL</span>
-                  <span class="badge badge-purple">Cisco PT</span>
+                  <span class="badge badge-red">Firewall Zones</span>
+                  <span class="badge badge-red">Port Security</span>
+                  <span class="badge badge-red">DHCP Snooping</span>
+                  <span class="badge badge-red">DAI</span>
+                  <span class="badge badge-red">ACL</span>
+                  <span class="badge badge-purple">NAT</span>
+                  <span class="badge badge-amber">Cisco PT</span>
                 </div>
               </div>
 
@@ -1645,10 +1717,10 @@ aaa authentication ssh console LOCAL
                 <div class="project-eyebrow">Project 4A · Traffic Analysis</div>
                 <div class="project-title">Traffic fault diagnosis with Wireshark</div>
                 <div class="project-badges">
-                  <span class="badge badge-red">Wireshark</span>
-                  <span class="badge badge-red">tcpdump</span>
+                  <span class="badge badge-amber">Wireshark</span>
+                  <span class="badge badge-amber">tcpdump</span>
                   <span class="badge badge-green">ARP analysis</span>
-                  <span class="badge badge-purple">OSPF diagnostics</span>
+                  <span class="badge badge-green">OSPF diagnostics</span>
                 </div>
               </div>
 
@@ -1706,17 +1778,79 @@ aaa authentication ssh console LOCAL
           <div class="tl-item" data-tl-item>
             <div class="tl-item-icon">📝</div>
             <div class="tl-item-body">
-              <div class="tl-item-title">Secretary · Leadership Club</div>
-              <div class="tl-item-role">Role · Organisation</div>
+              <div class="tl-item-title">Secretary</div>
+              <div class="tl-item-role">Leadership Club · UniKL BMI</div>
               <div class="tl-item-desc">My leadership journey started from a behind-the-scenes role: the secretary. While the position may appear administrative, I quickly learnt that effective teamwork depends heavily on organisation, communication, and attention to detail.</div>
+              <div class="tl-item-subhead">// Key Contributions</div>
+              <ul class="tl-item-list">
+                <li>Managed official documentation, meeting minutes, reports, and communication materials to support club operations.</li>
+                <li>Coordinated meetings and maintained clear communication between committee members and university stakeholders.</li>
+                <li>Assisted in planning and executing club activities during the COVID-19 period, adapting to the challenges of conducting programmes virtually.</li>
+              </ul>
             </div>
           </div>
           <div class="tl-item" data-tl-item>
-            <div class="tl-item-icon">👥</div>
+            <div class="tl-item-icon">📂</div>
             <div class="tl-item-body">
-              <div class="tl-item-title">Another Involvement</div>
-              <div class="tl-item-role">Role · Organisation</div>
-              <div class="tl-item-desc">Add as many involvement cards per year as you need by duplicating a tl-item block.</div>
+              <div class="tl-item-title">Secretary</div>
+              <div class="tl-item-role">UniKL Leaders Transformation (ULTRAS) · UniKL BMI</div>
+              <div class="tl-item-desc">After gaining experience within a student club, I stepped into a larger environment by becoming part of a university-level organisation through ULTRAS. This role exposed me to a broader scope of coordination and responsibility.</div>
+	      <div class="tl-item-subhead">// Key Contributions</div>
+	      <ul class="tl-item-list">
+  	        <li>Managed official documentation, meeting minutes, reports, and communication materials to support club operations.</li>
+  	        <li>Coordinated meetings and maintained clear communication between committee members and university stakeholders.</li>
+ 		<li>Assisted in planning and executing club activities during the COVID-19 period, adapting to the challenges of conducting programmes virtually.</li>
+	      </ul>
+                  <div class="evidence-gallery">
+                    <div class="evidence-item">
+                      <img src="proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 12</strong> — NTP authentication synced</div>
+                    </div>
+		</div>
+            </div>
+          </div>
+          <div class="tl-item" data-tl-item>
+            <div class="tl-item-icon">🗳️</div>
+            <div class="tl-item-body">
+              <div class="tl-item-title">Secretary</div>
+              <div class="tl-item-role">Student Representative Election Committee · UniKL BMI</div>
+              <div class="tl-item-desc">My third secretary role probably confirmed that I had become comfortable working with documentation and coordination. However, this was also one of my first experiences working within an extremely tight timeline.</div>
+	      <div class="tl-item-subhead">// Key Contributions</div>
+	      <ul class="tl-item-list">
+  	        <li>Prepared official election documents, meeting minutes, event scripts, and programme flow materials.</li>
+  	        <li>Assisted in coordinating election logistics, announcements, and communication with university management.</li>
+ 		<li>Supported the execution of a three-week election timeline involving candidate registration, manifesto preparation, and voting arrangements.</li>
+	      </ul>
+                  <div class="evidence-gallery">
+                    <div class="evidence-item">
+                      <img src="proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 12</strong> — NTP authentication synced</div>
+                    </div>
+		</div>
             </div>
           </div>
         </div>
@@ -1728,24 +1862,138 @@ aaa authentication ssh console LOCAL
           <div class="tl-dot"></div>
           <div>
             <div class="tl-year">2022</div>
-            <div class="tl-year-sub">// Second Year</div>
+            <div class="tl-year-sub">// Taking on Greater Responsibilities 🚀</div>
           </div>
         </div>
         <div class="tl-items">
           <div class="tl-item" data-tl-item>
-            <div class="tl-item-icon">📜</div>
+            <div class="tl-item-icon">👥</div>
             <div class="tl-item-body">
-              <div class="tl-item-title">Involvement Title Here</div>
-              <div class="tl-item-role">Role · Organisation</div>
-              <div class="tl-item-desc">Describe what you did. You can mention any certifications, competitions, events, or leadership roles from this year.</div>
+              <div class="tl-item-title">Vice President</div>
+              <div class="tl-item-role">Leadership Club · UniKL BMI</div>
+              <div class="tl-item-desc">After spending a year supporting teams from behind the scenes, I was trusted with a leadership position as the Vice President of the Leadership Club.</div>
+	      <div class="tl-item-subhead">// Key Contributions</div>
+	      <ul class="tl-item-list">
+  	        <li>Co-led an 18-member committee in planning and executing leadership activities throughout the academic year.</li>
+  	        <li>Supported committee members through task delegation, coordination, and progress monitoring.</li>
+ 		<li>Contributed to decision-making and strategic planning to ensure activities aligned with the club’s objectives.</li>
+	      </ul>
+                  <div class="evidence-gallery">
+                    <div class="evidence-item">
+                      <img src="proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 12</strong> — NTP authentication synced</div>
+                    </div>
+		</div>
             </div>
           </div>
           <div class="tl-item" data-tl-item>
-            <div class="tl-item-icon">🎤</div>
+            <div class="tl-item-icon">💚</div>
             <div class="tl-item-body">
-              <div class="tl-item-title">Another Involvement</div>
-              <div class="tl-item-role">Role · Organisation</div>
-              <div class="tl-item-desc">Another activity from 2023. Add or remove cards freely.</div>
+              <div class="tl-item-title">Project Manager</div>
+              <div class="tl-item-role">Green Ribbon Effective Training Agent (GREAT) · UniKL BMI</div>
+              <div class="tl-item-desc">What started as a simple decision to volunteer for a programme became my first opportunity to manage a complete project from planning through execution.</div>
+	      <div class="tl-item-subhead">// Key Contributions</div>
+	      <ul class="tl-item-list">
+  	        <li>Collaborated with Green Ribbon Group Malaysia to organise a mental health initiative involving UniKL BMI, MIDI, and MIAT.</li>
+  	        <li>Formed and led a 10-member committee throughout project planning and execution.</li>
+ 		<li>Managed project timelines, stakeholder communication, KPI tracking, and programme coordination.</li>
+	        <li>Successfully delivered a two-day programme that resulted in 30+ participants becoming certified Mental Health Ambassadors.</li>
+	      </ul>
+                  <div class="evidence-gallery">
+                    <div class="evidence-item">
+                      <img src="proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 12</strong> — NTP authentication synced</div>
+                    </div>
+		</div>
+            </div>
+          </div>
+          <div class="tl-item" data-tl-item>
+            <div class="tl-item-icon">👩‍⚖️</div>
+            <div class="tl-item-body">
+              <div class="tl-item-title">President</div>
+              <div class="tl-item-role">Student Representative Election Committee · UniKL BMI</div>
+              <div class="tl-item-desc">Returning to the Election Committee as Head allowed me to apply the organisational skills I developed previously while taking full responsibility for the election process.</div>
+	      <div class="tl-item-subhead">// Key Contributions</div>
+	      <ul class="tl-item-list">
+  	        <li>Led a 16-member committee throughout a month-long student representative election.</li>
+  	        <li>Managed task delegation, event planning, university management liaison, and candidate campaign coordination.</li>
+ 		<li>Successfully conducted the first face-to-face SRC manifesto session and voting process after three years of online elections.</li>
+		<li>Increased voter participation from 34.63% (2021) to 49.05% (2022), achieving the highest voter turnout among seven UniKL campuses.</li>
+	      </ul>
+                  <div class="evidence-gallery">
+                    <div class="evidence-item">
+                      <img src="proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 12</strong> — NTP authentication synced</div>
+                    </div>
+		</div>
+            </div>
+          </div>
+          <div class="tl-item" data-tl-item>
+            <div class="tl-item-icon">💻</div>
+            <div class="tl-item-body">
+              <div class="tl-item-title">Secretary</div>
+              <div class="tl-item-role">Welcoming Orientation Week (WOW) · UniKL BMI</div>
+              <div class="tl-item-desc">After several secretary roles, I became very familiar with the responsibilities behind successful events. However, WOW presented a different challenge as it involved welcoming hundreds of new students into university life.</div>
+	      <div class="tl-item-subhead">// Key Contributions</div>
+	      <ul class="tl-item-list">
+  	        <li>Managed documentation, reports, meeting minutes, finance records, presentation materials, and event scripts.</li>
+  	        <li>Supported programme coordination for a five-day orientation programme involving 200–300+ new students.</li>
+ 		<li>Assisted committee members in maintaining smooth programme flow and responding to operational changes during event execution.</li>
+	      </ul>
+                  <div class="evidence-gallery">
+                    <div class="evidence-item">
+                      <img src="proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 12</strong> — NTP authentication synced</div>
+                    </div>
+		</div>
             </div>
           </div>
         </div>
@@ -1757,57 +2005,120 @@ aaa authentication ssh console LOCAL
           <div class="tl-dot"></div>
           <div>
             <div class="tl-year">2023</div>
-            <div class="tl-year-sub">// Third Year</div>
+            <div class="tl-year-sub">// From Behind the Scenes to Centre Stage 🌟</div>
           </div>
         </div>
         <div class="tl-items">
           <div class="tl-item" data-tl-item>
-            <div class="tl-item-icon">🤝</div>
+            <div class="tl-item-icon">🎤</div>
             <div class="tl-item-body">
-              <div class="tl-item-title">Involvement Title Here</div>
-              <div class="tl-item-role">Role · Organisation</div>
-              <div class="tl-item-desc">Describe your involvement from this year. Volunteer work, club activities, committees, workshops — all count.</div>
+              <div class="tl-item-title">Deputy Head</div>
+              <div class="tl-item-role">Welcoming Orientation Week (WOW) · UniKL BMI</div>
+              <div class="tl-item-desc">A year after joining WOW as a secretary, I returned as the Deputy Head—this time responsible for helping lead the team that first taught me the fundamentals of event management.</div>
+	      <div class="tl-item-subhead">// Key Contributions</div>
+	      <ul class="tl-item-list">
+  	        <li>Worked together with the Head Committee to lead a 25-member organising team for a five-day orientation programme.</li>
+  	        <li>Coordinated committee operations and ensured smooth execution of activities throughout the event.</li>
+ 		<li>Guided team members in carrying out their responsibilities and resolving operational challenges.</li>
+		<li>Hosted formal ceremonies attended by 100+ participants, including university deans and deputy deans.</li>
+	      </ul>
+                  <div class="evidence-gallery">
+                    <div class="evidence-item">
+                      <img src="proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 12</strong> — NTP authentication synced</div>
+                    </div>
+		</div>
             </div>
           </div>
           <div class="tl-item" data-tl-item>
-            <div class="tl-item-icon">🌟</div>
+            <div class="tl-item-icon">🤝</div>
             <div class="tl-item-body">
-              <div class="tl-item-title">Another Involvement</div>
-              <div class="tl-item-role">Role · Organisation</div>
-              <div class="tl-item-desc">Another activity from 2022.</div>
+              <div class="tl-item-title">Facilitator</div>
+              <div class="tl-item-role">Welcoming Orientation Week (WOW) · UniKL BMI</div>
+              <div class="tl-item-desc">After years of holding executive positions, becoming a facilitator gave me the opportunity to return to the core purpose of WOW: creating a positive experience for new students.</div>
+	      <div class="tl-item-subhead">// Key Contributions</div>
+	      <ul class="tl-item-list">
+  	        <li>Led an orientation activity session involving 100+ students.</li>
+  	        <li>Developed activity flow, prepared timelines, coordinated venue arrangements, and briefed supporting committee members.</li>
+ 		<li>Ensured smooth activity execution by managing participants and resolving issues during the session.</li>
+	      </ul>
+                  <div class="evidence-gallery">
+                    <div class="evidence-item">
+                      <img src="proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 12</strong> — NTP authentication synced</div>
+                    </div>
             </div>
+           </div>
           </div>
         </div>
       </div>
 
-      <!-- ══ 2024 ══ -->
+      <!-- ══ 2025 ══ -->
       <div class="tl-year-block" data-tl>
         <div class="tl-year-label">
           <div class="tl-dot"></div>
           <div>
-            <div class="tl-year">2024</div>
-            <div class="tl-year-sub">// Final Year</div>
+            <div class="tl-year">2025</div>
+            <div class="tl-year-sub">// From Behind the Scenes to Centre Stage 🌟</div>
           </div>
         </div>
         <div class="tl-items">
           <div class="tl-item" data-tl-item>
-            <div class="tl-item-icon">🎓</div>
+            <div class="tl-item-icon">🎤</div>
             <div class="tl-item-body">
-              <div class="tl-item-title">Involvement Title Here</div>
-              <div class="tl-item-role">Role · Organisation</div>
-              <div class="tl-item-desc">Your earliest involvement — where it all started. Orientation committees, intro events, first clubs joined, and so on.</div>
+              <div class="tl-item-title">Deputy Head</div>
+              <div class="tl-item-role">Welcoming Orientation Week (WOW) · UniKL BMI</div>
+              <div class="tl-item-desc">A year after joining WOW as a secretary, I returned as the Deputy Head—this time responsible for helping lead the team that first taught me the fundamentals of event management.</div>
+	      <div class="tl-item-subhead">// Key Contributions</div>
+	      <ul class="tl-item-list">
+  	        <li>Worked together with the Head Committee to lead a 25-member organising team for a five-day orientation programme.</li>
+  	        <li>Coordinated committee operations and ensured smooth execution of activities throughout the event.</li>
+ 		<li>Guided team members in carrying out their responsibilities and resolving operational challenges.</li>
+		<li>Hosted formal ceremonies attended by 100+ participants, including university deans and deputy deans.</li>
+	      </ul>
+                  <div class="evidence-gallery">
+                    <div class="evidence-item">
+                      <img src="proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
+                    </div>
+                    <div class="evidence-item">
+                      <img src="proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Test 12</strong> — NTP authentication synced</div>
+                    </div>
             </div>
           </div>
-          <div class="tl-item" data-tl-item>
-            <div class="tl-item-icon">💡</div>
-            <div class="tl-item-body">
-              <div class="tl-item-title">Another Involvement</div>
-              <div class="tl-item-role">Role · Organisation</div>
-              <div class="tl-item-desc">Another activity from your first year.</div>
-            </div>
-          </div>
-        </div>
-      </div>
 
     </div><!-- /timeline -->
   </section>
@@ -1822,20 +2133,19 @@ aaa authentication ssh console LOCAL
 
     <div class="contact-links" style="max-width:420px;">
       <a href="mailto:firyaliman@gmail.com" class="contact-link">
-        <span class="cl-icon">✉</span>
+        <span class="cl-icon">📧</span>
         <div>
           <div>firyaliman@gmail.com</div>
           <div class="cl-label">Email</div>
         </div>
       </a>
-      <a href="www.linkedin.com/in/firyaliman" class="contact-link" target="_blank">
+      <a href="https://linkedin.com/in/firyaliman" class="contact-link" target="_blank">
         <span class="cl-icon">💼</span>
         <div>
           <div>linkedin.com/in/firyaliman</div>
           <div class="cl-label">LinkedIn</div>
         </div>
       </a>
-      
     </div>
   </section>
 </div>
@@ -1848,7 +2158,7 @@ aaa authentication ssh console LOCAL
 </div>
 
 <footer>
-  <div>© 2026 Firyal Iman's</div>
+  <div>© 2026 Networking by Iman</div>
 </footer>
 
 <script>
