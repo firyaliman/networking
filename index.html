@@ -586,17 +586,18 @@
       text-transform: uppercase;
       color: var(--accent);
       text-align: left;
-      padding: 12px 16px;
+      padding: 12px 14px;
       border-bottom: 1px solid var(--border);
       white-space: nowrap;
     }
     .data-table tbody td {
-      padding: 12px 16px;
+      padding: 12px 14px;
       border-bottom: 1px solid var(--border);
       color: #94a3b8;
       font-family: var(--mono);
-      font-size: 12.5px;
-      white-space: nowrap;
+      font-size: 11.5px;
+      white-space: normal;
+      max-width: 260px;
     }
     .data-table tbody tr:last-child td { border-bottom: none; }
     .data-table tbody tr:hover td { background: rgba(56,189,248,0.04); color: var(--text); }
@@ -615,6 +616,19 @@
     .status-pill.ok   { background: #34d39918; color: var(--success); border: 1px solid #34d39940; }
     .status-pill.fail { background: #fbbf2418; color: var(--warn);    border: 1px solid #fbbf2440; }
     .status-pill.info { background: #38bdf818; color: var(--accent); border: 1px solid #38bdf840; }
+
+    /* small clickable proof thumbnail for use inside table cells */
+    .proof-thumb {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      cursor: zoom-in;
+      display: block;
+      transition: border-color var(--transition), opacity var(--transition);
+    }
+    .proof-thumb:hover { border-color: var(--accent); opacity: 0.9; }
 
     /* ─── Screenshot gallery (evidence thumbnails) ─── */
     .evidence-gallery {
@@ -1229,42 +1243,19 @@ Core-MLS-1(config-router)#network 10.99.99.0 0.0.0.255 area 0
                   <h4>Verification Results</h4>
                   <div class="data-table-wrap">
                     <table class="data-table">
-                      <thead><tr><th>#</th><th>Test</th><th>Result</th></tr></thead>
+                      <thead><tr><th>#</th><th>Verification Test</th><th>Result</th><th>Proof</th></tr></thead>
                       <tbody>
-                        <tr><td>1</td><td>STP root bridge per VLAN (Core-1 vs Core-2)</td><td><span class="status-pill ok">✓ Split roots</span></td></tr>
-                        <tr><td>2</td><td>Shut peer EtherChannel link (Core-1 ↔ Core-2)</td><td><span class="status-pill ok">✓ No failover</span></td></tr>
-                        <tr><td>3</td><td>Shut WAN uplink (Edge-RTR)</td><td><span class="status-pill ok">✓ Failover in seconds</span></td></tr>
-                        <tr><td>4</td><td>Guest device → POS terminal</td><td><span class="status-pill fail">✗ Denied</span></td></tr>
-                        <tr><td>5</td><td>Guest device → Internet test target</td><td><span class="status-pill ok">✓ Success</span></td></tr>
-                        <tr><td>6</td><td>POS terminal → Payment gateway</td><td><span class="status-pill ok">✓ Success</span></td></tr>
-                        <tr><td>7</td><td>Second device plugged into POS port</td><td><span class="status-pill fail">✗ Port err-disabled</span></td></tr>
-                        <tr><td>8</td><td>IP phone + guest laptop on same port</td><td><span class="status-pill ok">✓ Separate VLANs</span></td></tr>
-                        <tr><td>9</td><td><code>sh etherchannel summary</code></td><td><span class="status-pill ok">✓ Po1 (SU)</span></td></tr>
+                        <tr><td>1</td><td>HSRP gateway redundancy verification across VLANs</td><td><span class="status-pill ok">✓ Active/standby roles confirmed</span></td>
+			<td><img src="images/proof-test1.png" class="proof-thumb" alt="HSRP gateway redundancy verification" onclick="openLightbox(this)" /> <img src="images/proof-test1.png" class="proof-thumb" alt="HSRP gateway redundancy verification" onclick="openLightbox(this)" /></td></tr>
+                        <tr><td>2</td><td>HSRP failover simulation by disabling active gateway</td><td><span class="status-pill ok">✓ Traffic recovered through standby gateway</span></td><td><img src="images/proof-test2.png" class="proof-thumb" alt="HSRP failover simulation" onclick="openLightbox(this)" /></td></tr>
+                        <tr><td>3</td><td>STP root bridge election verification</td><td><span class="status-pill ok">✓ Root bridge placement matches design</span></td><td><img src="images/proof-test3.png" class="proof-thumb" alt="STP root bridge election verification" onclick="openLightbox(this)" /></td></tr>
+                        <tr><td>4</td><td>EtherChannel redundancy test by disabling member link</td><td><span class="status-pill ok">✓ Port-channel maintained connectivity</span></td><td><img src="images/proof-test4.png" class="proof-thumb" alt="EtherChannel redundancy test" onclick="openLightbox(this)" /></td></tr>
+                        <tr><td>5</td><td>VLAN segmentation and inter-VLAN communication testing</td><td><span class="status-pill ok">✓ Expected traffic permitted</span></td><td><img src="images/proof-test5.png" class="proof-thumb" alt="VLAN segmentation test" onclick="openLightbox(this)" /></td></tr>
+                        <tr><td>6</td><td>Voice VLAN verification</td><td><span class="status-pill ok">✓ Voice and data traffic separated</span></td><td><img src="images/proof-test6.png" class="proof-thumb" alt="Voice VLAN verification" onclick="openLightbox(this)" /></td></tr>
                       </tbody>
                     </table>
                   </div>
-
-                  <div class="evidence-gallery">
-                    <div class="evidence-item">
-                      <img src="hotel-test3-wan-failover.png" class="evidence-thumb" alt="HSRP failover on WAN uplink shutdown" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 3</strong> — Gateway fails over when WAN link drops</div>
-                    </div>
-                    <div class="evidence-item">
-                      <img src="hotel-test7-port-errdisable.png" class="evidence-thumb" alt="POS port shutting down on violation" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 7</strong> — POS port shuts down on tampering</div>
-                    </div>
-                    <div class="evidence-item">
-                      <img src="hotel-test8-voice-vlan.png" class="evidence-thumb" alt="Phone and laptop on separate VLANs" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 8</strong> — Phone and guest device auto-separate onto different VLANs</div>
-                    </div>
-                    <div class="evidence-item">
-                      <img src="hotel-test9-etherchannel.png" class="evidence-thumb" alt="EtherChannel summary showing bundled link" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 9</strong> — Both core links bundled as one active EtherChannel</div>
-                    </div>
-                  </div>
                 </div>
-
-
               </div>
             </div>
           </div><!-- /proj1 -->
@@ -1479,40 +1470,17 @@ Core-MLS-1(config-router)#network 10.99.99.0 0.0.0.255 area 0
 
                   <div class="data-table-wrap">
                     <table class="data-table">
-                      <thead><tr><th>#</th><th>Test</th><th>Expected Result</th></tr></thead>
+                      <thead><tr><th>#</th><th>Verification Test</th><th>Result</th><th>Proof</th></tr></thead>
                       <tbody>
-                        <tr><td>1</td><td>OSPF adjacency within each site</td><td><span class="status-pill ok">✓ FULL</span> with local VLAN gateways</td></tr>
-                        <tr><td>2</td><td>eBGP peering to ISP</td><td><span class="status-pill ok">✓ Established</span> with ISP (10.0.12.2 / .13.2 / .14.2)</td></tr>
-                        <tr><td>3</td><td>ISP sees all 3 site AS peers</td><td><span class="status-pill ok">✓ 3 neighbors Established</span> — AS 65001, 65002, 65003</td></tr>
-                        <tr><td>4</td><td>Redistribution: OSPF routes visible in BGP</td><td><span class="status-pill ok">✓ Local LAN subnets present</span> as BGP-originated routes</td></tr>
-                        <tr><td>5</td><td>Redistribution: BGP routes visible in OSPF</td><td><span class="status-pill ok">✓ Remote site subnets present</span>, marked <code>O E2</code></td></tr>
-                        <tr><td>6</td><td>Penang User PC → HQ Server</td><td><span class="status-pill ok">✓ Reachable</span></td></tr>
-                        <tr><td>7</td><td>Johor User PC → Penang Server</td><td><span class="status-pill ok">✓ Reachable</span></td></tr>
-                        <tr><td>8</td><td>Cross-site reachability to HQ Mgmt VLAN</td><td><span class="status-pill ok">✓ Reachable</span> — no ACL currently restricts this</td></tr>
-                        <tr><td>9</td><td>Native VLAN hardening</td><td><span class="status-pill ok">✓ Native VLAN 99</span>, not default VLAN 1</td></tr>
-                        <tr><td>10</td><td>Port security on user-facing ports</td><td><span class="status-pill ok">✓ Enabled, Sticky, max 2</span></td></tr>
-                        <tr><td>11</td><td>Unused ports isolated</td><td><span class="status-pill fail">✗ Administratively down</span>, parked in VLAN 99</td></tr>
+                        <tr><td>1</td><td>OSPF neighbour adjacency between enterprise routers</td><td><span class="status-pill ok">✓ FULL state established</span></td><td><img src="images/proj2-proof1.png" class="proof-thumb" alt="OSPF neighbour adjacency verification" onclick="openLightbox(this)" /></td></tr>
+                        <tr><td>2</td><td>eBGP peering between enterprise sites and ISP</td><td><span class="status-pill ok">✓ All BGP neighbours established</span></td><td><img src="images/proj2-proof2.png" class="proof-thumb" alt="eBGP peering verification" onclick="openLightbox(this)" /></td></tr>
+                        <tr><td>3</td><td>ISP BGP table verification</td><td><span class="status-pill ok">✓ All 3 enterprise AS routes learned</span></td><td><img src="images/proj2-proof3.png" class="proof-thumb" alt="ISP BGP table verification" onclick="openLightbox(this)" /></td></tr>
+                        <tr><td>4</td><td>OSPF-to-BGP redistribution</td><td><span class="status-pill ok">✓ Internal LAN routes advertised to ISP</span></td><td><img src="images/proj2-proof4.png" class="proof-thumb" alt="OSPF to BGP redistribution verification" onclick="openLightbox(this)" /></td></tr>
+                        <tr><td>5</td><td>BGP-to-OSPF redistribution</td><td><span class="status-pill ok">✓ Remote site routes installed as OSPF external routes</span></td><td><img src="images/proj2-proof5.png" class="proof-thumb" alt="BGP to OSPF redistribution verification" onclick="openLightbox(this)" /></td></tr>
+                        <tr><td>6</td><td>Inter-site connectivity (Penang PC → HQ Server, Johor PC → Penang Server)</td><td><span class="status-pill ok">✓ Successful communication</span></td><td><img src="images/proj2-proof6.png" class="proof-thumb" alt="Inter-site connectivity test" onclick="openLightbox(this)" /></td></tr>
                       </tbody>
                     </table>
                   </div>
-                  <div class="evidence-gallery">
-                    <div class="evidence-item">
-                      <img src="images/proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
-                    </div>
-                    <div class="evidence-item">
-                      <img src="images/proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
-                    </div>
-                    <div class="evidence-item">
-                      <img src="images/proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
-                    </div>
-                    <div class="evidence-item">
-                      <img src="images/proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 12</strong> — NTP authentication synced</div>
-                    </div>
-		</div>
                 </div>
 
            
@@ -1592,7 +1560,7 @@ Core-MLS-1(config-router)#network 10.99.99.0 0.0.0.255 area 0
               <div class="tab-content" data-tab="topology">
                 <div class="content-block">
                   <h4>Network Diagram</h4>
-                  <img src="proj3_image/proj3b-dmz-topology.png"
+                  <img src="proj3_image/proj3-dmz-topology.png"
                        class="topo-img"
                        alt="Firewall Zoning & DMZ Topology"
                        style="max-width: 550px; display: block; margin: 0 auto;"
@@ -1739,42 +1707,18 @@ aaa authentication ssh console LOCAL
                   <h4>Verification Results</h4>
                   <div class="data-table-wrap">
                     <table class="data-table">
-                      <thead><tr><th>#</th><th>From</th><th>To</th><th>Result</th></tr></thead>
+                      <thead><tr><th>#</th><th>Test</th><th>Result</th><th>Proof</th></tr></thead>
                       <tbody>
-                        <tr><td>1</td><td>Int-HR PC</td><td>Int-IT PC</td><td><span class="status-pill ok">✓</span></td></tr>
-                        <tr><td>2</td><td>Int-HR PC</td><td>DHCP (auto IP)</td><td><span class="status-pill ok">✓</span></td></tr>
-                        <tr><td>3</td><td>Int-HR PC</td><td>FTP 192.168.40.2</td><td><span class="status-pill ok">✓ Login</span></td></tr>
-                        <tr><td>4</td><td>Int-HR PC</td><td>HTTP 172.16.50.2 (DMZ)</td><td><span class="status-pill ok">✓ Page loads</span></td></tr>
-                        <tr><td>5</td><td>Ext-HR PC</td><td>HTTP 172.16.50.2 (DMZ)</td><td><span class="status-pill ok">✓ Page loads</span></td></tr>
-                        <tr><td>6</td><td>Ext-HR PC</td><td>192.168.10.2 (Int-HR)</td><td><span class="status-pill fail">✗ Blocked</span></td></tr>
-                        <tr><td>7</td><td>HTTP Server (DMZ)</td><td>192.168.10.2 (Int-HR)</td><td><span class="status-pill fail">✗ Blocked</span></td></tr>
-                        <tr><td>8</td><td>Int-HR PC</td><td>NTP/Syslog (192.168.50.x)</td><td><span class="status-pill fail">✗ Blocked</span></td></tr>
-                        <tr><td>9</td><td>Int-HR PC</td><td>SSH to Internal switch</td><td><span class="status-pill fail">✗ Blocked</span></td></tr>
-                        <tr><td>10</td><td>Int-IT PC</td><td>SSH to Internal switch</td><td><span class="status-pill ok">✓ Login</span></td></tr>
-                        <tr><td>11</td><td>Ext-HR</td><td>External DHCP (auto IP)</td><td><span class="status-pill ok">✓</span></td></tr>
-                        <tr><td>12</td><td>Internal switch</td><td><code>sh ntp associations</code></td><td><span class="status-pill ok">✓ Synced</span></td></tr>
+                        <tr><td>1</td><td>Internal HR PC → Internal IT PC</td><td><span class="status-pill ok">✓ Allowed</span></td><td><img src="proj3_image/proj3-proof1.png" class="proof-thumb" alt="Internal HR to Internal IT test" onclick="openLightbox(this)" /></td></tr>
+                        <tr><td>2</td><td>Internal HR PC → DMZ HTTP Server (172.16.50.2)</td><td><span class="status-pill ok">✓ Page loads</span></td><td><img src="proj3_image/proj3-proof2" class="proof-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" /></td></tr>
+                        <tr><td>3</td><td>External HR PC → DMZ HTTP Server (172.16.50.2)</td><td><span class="status-pill ok">✓ Page loads</span></td><td><img src="proj3_image/proj3-proof3.png" class="proof-thumb" alt="External HR to DMZ HTTP test" onclick="openLightbox(this)" /></td></tr>
+                        <tr><td>4</td><td>External HR PC → Internal HR PC (192.168.10.2)</td><td><span class="status-pill fail">✗ Blocked</span></td><td><img src="proj3_image/proj3-proof4.png" class="proof-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" /></td></tr>
+                        <tr><td>5</td><td>DMZ HTTP Server → Internal HR PC (192.168.10.2)</td><td><span class="status-pill fail">✗ Blocked</span></td><td><img src="proj3_image/proj3-proof5.png" class="proof-thumb" alt="DMZ to Internal HR blocked test" onclick="openLightbox(this)" /></td></tr>
+                        <tr><td>6</td><td>Internal IT PC → SSH Internal Switch</td><td><span class="status-pill ok">✓ Login</span></td><td><img src="proj3_image/proj3-proof6.png" class="proof-thumb" alt="Internal IT SSH login test" onclick="openLightbox(this)" /></td></tr>
                       </tbody>
                     </table>
                   </div>
 
-                  <div class="evidence-gallery">
-                    <div class="evidence-item">
-                      <img src="proj3_image/proj3b-test4-inside-dmz.png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
-                    </div>
-                    <div class="evidence-item">
-                      <img src="proj3_image/proj3b-test6-outside-inside-blocked.png" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
-                    </div>
-                    <div class="evidence-item">
-                      <img src="proj3_image/proj3b-test9-ssh-blocked.png" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
-                    </div>
-                    <div class="evidence-item">
-                      <img src="proj3_image/proj3b-test12-ntp-synced.png" class="evidence-thumb" alt="NTP associations synced" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 12</strong> — NTP authentication synced</div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
