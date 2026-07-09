@@ -1,5 +1,5 @@
 # Networking by Iman :)
-Hi, I'm Iman! 👋 A Telecommunication Engineering graduate with a growing passion for enterprise networking and cybersecurity. I enjoy designing networks that are practical, resilient and secure, and I love turning complex networking concepts into hands-on projects that reflect real business environments.
+Hi, I'm Iman! 👋 A Telecommunication Engineering graduate with a growing passion for enterprise networking and security. I enjoy designing networks that are practical, resilient and secure, and I love turning complex networking concepts into hands-on projects that reflect real business environments.
 
 Every project in this portfolio represents a step in my learning journey. From planning and implementation to testing and troubleshooting, I enjoy understanding not just how a solution works, but why it's designed that way.
 
