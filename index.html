@@ -126,16 +126,12 @@
     /* ─── Layout ─── */
     .page { max-width: 1100px; margin: auto; padding: 0 24px; }
 
-    section { padding: 72px 0; }
+    section { padding: 52px 0; }
     section + section { border-top: 1px solid var(--border); }
 
     /* ─── Hero ─── */
     #hero {
       padding: 80px 0 64px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 40px;
-      align-items: center;
     }
     .hero-eyebrow {
       font-family: var(--mono);
@@ -183,19 +179,19 @@
     .tag.sec   { border-color: #34d39940; color: var(--success); background: #34d39910; }
     .tag.vlan  { border-color: #fbbf2440; color: var(--warn); background: #fbbf2410; }
 
-   /* ─── Profile Photo (circular, replaces old stat block) ─── */
-    .profile-photo-wrap {
+   /* ─── Profile Photo (circular) ─── */
+    .hero-top {
       display: flex;
-      justify-content: center;
       align-items: center;
+      gap: 28px;
     }
     .profile-photo {
-      width: 180px;
-      height: 180px;
+      width: 132px;
+      height: 132px;
       border-radius: 50%;
       overflow: hidden;
-      border: 3px solid var(--accent);
-      box-shadow: 0 0 0 6px rgba(56,189,248,0.08), 0 20px 44px rgba(0,0,0,0.45);
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 0 4px rgba(56,189,248,0.06), 0 12px 28px rgba(0,0,0,0.4);
       flex-shrink: 0;
     }
     .profile-photo img {
@@ -913,7 +909,7 @@
 
     /* ─── Responsive ─── */
     @media (max-width: 720px) {
-      #hero { grid-template-columns: 1fr; }
+      .hero-top { flex-direction: column; align-items: flex-start; gap: 16px; }
       .hero-stat-block { flex-direction: row; }
       .about-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
@@ -951,15 +947,17 @@
 <div class="page">
   <section id="about">
   <div id="hero">
-    <div>
-      <h1 class="hero-name">Networking by<br><em>Iman.</em></h1>
-      <div class="about-intro" style="margin-top:18px;">
-        <p>Hi, I'm Iman! 👋 A Telecommunication Engineering graduate with a growing passion for enterprise networking and security. I enjoy designing networks that are practical, resilient and secure, and I love turning complex networking concepts into hands-on projects that reflect real business environments.</p>
-        <p>Every project in this portfolio represents a step in my learning journey. From planning and implementation to testing and troubleshooting, I enjoy understanding not just how a solution works, but why it's designed that way.</p>
-        <p>I've spent countless hours designing, configuring, breaking and rebuilding networks in my lab. Now, I'm looking forward to taking that curiosity into a real engineering environment, where I can learn from experienced engineers, contribute to production networks, and continue growing as a Network Engineer.</p>
-        <p>When I'm not building labs, you'll probably find me refining my portfolio, learning something new, or figuring out why a configuration that worked five minutes ago has suddenly decided not to.</p>
+    <div class="hero-top">
+      <div class="profile-photo">
+        <img src="images/profile-photo.png" alt="Firyal Iman" />
       </div>
-
+      <h1 class="hero-name">Hello, I'm<br><em>Iman.</em></h1>
+    </div>
+    <div class="about-intro" style="margin-top:24px;">
+      <p>A Telecommunication Engineering graduate with a growing passion for enterprise networking and security. I enjoy designing networks that are practical, resilient and secure, and I love turning complex networking concepts into hands-on projects that reflect real business environments.</p>
+      <p>Every project in this portfolio represents a step in my learning journey. From planning and implementation to testing and troubleshooting, I enjoy understanding not just <em>how</em> a solution works, but <em>why</em> it's designed that way.</p>
+      <p>I've spent countless hours designing, configuring, breaking and rebuilding networks in my lab. Now, I'm looking forward to taking that curiosity into a real engineering environment, where I can learn from experienced engineers, contribute to production networks, and continue growing as a Network Engineer.</p>
+      <p>When I'm not building labs, you'll probably find me refining my portfolio, learning something new, or figuring out why a configuration that worked five minutes ago has suddenly decided not to.</p>
     </div>
   </div>
   </section>
@@ -1505,7 +1503,7 @@ Core-MLS-1(config-router)#network 10.99.99.0 0.0.0.255 area 0
           <div class="project-card single-project" id="proj3b">
             <div class="project-header">
               <div class="project-meta">
-                <div class="project-eyebrow">Project 3B · Security</div>
+                <div class="project-eyebrow">Project 3A · Security</div>
                 <div class="project-title">Enterprise Firewall Zoning &amp; DMZ Security Architecture</div>
                 <div class="project-badges">
                   <span class="badge badge-red">ASA 5506-X</span>
@@ -2057,7 +2055,7 @@ aaa authentication ssh console LOCAL
   <section id="contact">
     <div class="section-label">// Let's Get In Touch :)</div>
     <h2 class="section-title">Contact</h2>
-    <p class="section-sub">Feel free to reach out — I'm always happy to talk networking, security, or opportunities.</p>
+    <p class="section-sub">Feel free to get in touch — I'm always happy to chat about networking, network security, or potential opportunities. I'm currently open to entry-level opportunities in Network Engineering, Network Security, and NOC.</p>
 
     <div class="contact-links" style="max-width:420px;">
       <a href="mailto:firyaliman@gmail.com" class="contact-link">
