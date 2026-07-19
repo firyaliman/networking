@@ -791,7 +791,9 @@
       font-size: 12px;
       color: var(--text);
       letter-spacing: 0.06em;
-      white-space: nowrap;
+      white-space: normal;
+      max-width: min(560px, 88vw);
+      text-align: center;
       background: rgba(11, 15, 26, 0.85);
       border: 1px solid var(--border);
       padding: 10px 18px;
@@ -1389,26 +1391,40 @@ Core-MLS-1(config-router)#network 10.99.99.0 0.0.0.255 area 0
                     <table class="data-table">
                       <thead><tr><th>#</th><th>Verification Test</th><th>Result</th><th>Proof</th></tr></thead>
                       <tbody>
-                        <tr><td>1</td><td>HSRP active/standby roles for user VLANs</td><td><span class="status-pill ok">✓ Active/standby gateway roles confirmed across Core-MLS-1 and Core-MLS-2</span></td><td><img src="proj1_image/proj1-test1.png" class="proof-thumb" alt="HSRP active/standby roles verification" onclick="openLightbox(this)" /></td></tr>
+                        <tr><td>1</td><td>HSRP active/standby roles for user VLANs</td><td><span class="status-pill ok">✓ Active/standby gateway roles confirmed across Core-MLS-1 and Core-MLS-2</span></td><td><img src="proj1_image/proj1-test1.png" class="proof-thumb" alt="HSRP active/standby roles verification" onclick="openLightbox(this)" />
+                          <div class="evidence-caption"><strong>HSRP active/standby roles for user VLANs</strong><p>Active/standby gateway roles confirmed across Core-MLS-1 and Core-MLS-2.</p></div>
+                          </td></tr>
                         <tr><td>2</td><td>HSRP gateway failure by shutting down active VLAN interface</td><td><span class="status-pill ok">✓ Standby core assumed active role and maintained user connectivity</span></td><td>
                         <div class="proof-group">
                             <img src="proj1_image/proj1-test2a.png" class="proof-thumb" alt="Shutting down VLAN 20 to test HSRP gateway failure simulation" onclick="openLightbox(this)" />
-                            <img src="proj1_image/proj1-test2b.png" class="proof-thumb" alt="..." onclick="openLightbox(this)" />
+                            <div class="evidence-caption"><strong>HSRP failover — before</strong><p>Active gateway shut down on the VLAN 20 interface to trigger the failover test.</p></div>
+                            <img src="proj1_image/proj1-test2b.png" class="proof-thumb" alt="Standby core taking over as active gateway after failover" onclick="openLightbox(this)" />
+                            <div class="evidence-caption"><strong>HSRP failover — after</strong><p>Standby core assumed the active role and maintained user connectivity.</p></div>
                           </div>
                           </td></tr>
                         <tr><td>3</td><td>RSTP root bridge placement per VLAN</td><td><span class="status-pill ok">✓ Root bridge distribution matched the designed topology</span></td><td>
                         <div class="proof-group">
                             <img src="proj1_image/proj1-test3a.png" class="proof-thumb" alt="RSTP root bridge placement verification" onclick="openLightbox(this)" />
-                            <img src="proj1_image/proj1-test3b.png" class="proof-thumb" alt="..." onclick="openLightbox(this)" />
+                            <div class="evidence-caption"><strong>RSTP root bridge placement</strong><p>Root bridge distribution matched the designed topology.</p></div>
+                            <img src="proj1_image/proj1-test3b.png" class="proof-thumb" alt="RSTP root bridge placement verification, second view" onclick="openLightbox(this)" />
+                            <div class="evidence-caption"><strong>RSTP root bridge placement</strong><p>Root bridge distribution matched the designed topology.</p></div>
                           </div></td></tr>
-                        <tr><td>4</td><td>ACP EtherChannel between core switches</td><td><span class="status-pill ok">✓ Port-channel operational with bundled links</span></td><td><img src="proj1_image/proj1-test4.png" class="proof-thumb" alt="LACP EtherChannel verification" onclick="openLightbox(this)" /></td></tr>
-                        <tr><td>5</td><td>EtherChannel member link failure</td><td><span class="status-pill ok">✓ Remaining physical link maintained Port-channel operation</span></td><td><img src="proj1_image/proj1-test5.png" class="proof-thumb" alt="EtherChannel member link failure simulation" onclick="openLightbox(this)" /></td></tr>
+                        <tr><td>4</td><td>ACP EtherChannel between core switches</td><td><span class="status-pill ok">✓ Port-channel operational with bundled links</span></td><td><img src="proj1_image/proj1-test4.png" class="proof-thumb" alt="LACP EtherChannel verification" onclick="openLightbox(this)" />
+                          <div class="evidence-caption"><strong>LACP EtherChannel between core switches</strong><p>Port-channel operational with bundled links.</p></div>
+                          </td></tr>
+                        <tr><td>5</td><td>EtherChannel member link failure</td><td><span class="status-pill ok">✓ Remaining physical link maintained Port-channel operation</span></td><td><img src="proj1_image/proj1-test5.png" class="proof-thumb" alt="EtherChannel member link failure simulation" onclick="openLightbox(this)" />
+                          <div class="evidence-caption"><strong>EtherChannel member link failure</strong><p>Remaining physical link maintained Port-channel operation.</p></div>
+                          </td></tr>
                         <tr><td>6</td><td>VLAN segmentation and inter-VLAN routing</td><td><span class="status-pill ok">✓ User VLANs successfully communicated through Layer 3 gateways</span></td><td>
                         <div class="proof-group">
                             <img src="proj1_image/proj1-test6a.png" class="proof-thumb" alt="VLAN segmentation and inter-VLAN routing verification" onclick="openLightbox(this)" />
-                            <img src="proj1_image/proj1-test6b.png" class="proof-thumb" alt="..." onclick="openLightbox(this)" />
+                            <div class="evidence-caption"><strong>VLAN segmentation and inter-VLAN routing</strong><p>Guest VLAN successfully connected to internet, but are unable to connect to other VLANs (POS & Admin) as it is unauthorised.</p></div>
+                            <img src="proj1_image/proj1-test6b.png" class="proof-thumb" alt="VLAN segmentation and inter-VLAN routing verification, second view" onclick="openLightbox(this)" />
+                            <div class="evidence-caption"><strong>VLAN segmentation and inter-VLAN routing</strong><p>User VLANs successfully communicated through Layer 3 gateways.</p></div>
                           </div></td></tr>
-                        <tr><td>7</td><td>Voice VLAN configuration</td><td><span class="status-pill ok">✓ Voice and data traffic separated using dedicated VLANs</span></td><td><img src="proj1_image/proj1-test7.png" class="proof-thumb" alt="Voice VLAN configuration verification" onclick="openLightbox(this)" /></td></tr>
+                        <tr><td>7</td><td>Voice VLAN configuration</td><td><span class="status-pill ok">✓ Voice and data traffic separated using dedicated VLANs</span></td><td><img src="proj1_image/proj1-test7.png" class="proof-thumb" alt="Voice VLAN configuration verification" onclick="openLightbox(this)" />
+                          <div class="evidence-caption"><strong>Voice VLAN configuration</strong><p>Voice and data traffic separated using dedicated VLANs.</p></div>
+                          </td></tr>
                       </tbody>
                     </table>
                   </div>
@@ -1594,7 +1610,9 @@ Core-MLS-1(config-router)#network 10.99.99.0 0.0.0.255 area 0
  switchport access vlan 99
  shutdown
                   </div>
-                  <p style="margin-top:10px; font-size:12.5px; color:var(--muted);">HQ_SW is identical except its trunk additionally allows VLAN 30 (<code>switchport trunk allowed vlan 10,20,30,99</code>) for the Mgmt VLAN.</p>
+                  <div class="callout note"><strong style="color:var(--accent)">Note:</strong>
+                    <p>HQ_SW is identical except its trunk additionally allows VLAN 30 (<code>switchport trunk allowed vlan 10,20,30,99</code>) for the Mgmt VLAN.</p>
+                  </div>
                 </div>
 
                 <div class="content-block">
@@ -1653,25 +1671,38 @@ ip routing
                         <tr><td>1</td><td>Verify OSPF-enabled interfaces</td><td><span class="status-pill ok">✓ All branch LAN interfaces participating in OSPF</span></td><td>
                         <div class="proof-group">
                             <img src="proj2_image/proj2-test1a.png" class="proof-thumb" alt="OSPF-enabled interfaces verification" onclick="openLightbox(this)" />
-                            <img src="proj2_image/proj2-test1b.png" class="proof-thumb" alt="..." onclick="openLightbox(this)" />
+                            <div class="evidence-caption"><strong>OSPF-enabled interfaces</strong><p>All branch LAN interfaces participating in OSPF.</p></div>
+                            <img src="proj2_image/proj2-test1b.png" class="proof-thumb" alt="OSPF-enabled interfaces verification, second view" onclick="openLightbox(this)" />
+                            <div class="evidence-caption"><strong>OSPF-enabled interfaces</strong><p>All branch LAN interfaces participating in OSPF.</p></div>
                           </div>
                           </td></tr>
 
                         <tr><td>2</td><td>Verify eBGP peering with ISP</td><td><span class="status-pill ok">✓ All BGP neighbours established</span></td><td>
                         <div class="proof-group">
 			    <img src="proj2_image/proj2-test2a.png" class="proof-thumb" alt="eBGP peering verification" onclick="openLightbox(this)" />
-                            <img src="proj2_image/proj2-test2b.png" class="proof-thumb" alt="..." onclick="openLightbox(this)" />
-                            <img src="proj2_image/proj2-test2c.png" class="proof-thumb" alt="..." onclick="openLightbox(this)" />
+                            <div class="evidence-caption"><strong>eBGP peering with ISP</strong><p>All BGP neighbours established.</p></div>
+                            <img src="proj2_image/proj2-test2b.png" class="proof-thumb" alt="eBGP peering verification, second view" onclick="openLightbox(this)" />
+                            <div class="evidence-caption"><strong>eBGP peering with ISP</strong><p>All BGP neighbours established.</p></div>
+                            <img src="proj2_image/proj2-test2c.png" class="proof-thumb" alt="eBGP peering verification, third view" onclick="openLightbox(this)" />
+                            <div class="evidence-caption"><strong>eBGP peering with ISP</strong><p>All BGP neighbours established.</p></div>
                           </div>
                           </td></tr>
 
-                        <tr><td>3</td><td>Verify ISP BGP routing table</td><td><span class="status-pill ok">✓ Routes learned from all enterprise sites</span></td><td><img src="proj2_image/proj2-test3a.png" class="proof-thumb" alt="ISP BGP routing table verification" onclick="openLightbox(this)" /></td></tr>
-                        <tr><td>4</td><td>Verify OSPF-to-BGP redistribution</td><td><span class="status-pill ok">✓ Branch LAN networks advertised into BGP</span></td><td><img src="proj2_image/proj2-test4a.png" class="proof-thumb" alt="OSPF to BGP redistribution verification" onclick="openLightbox(this)" /></td></tr>
-                        <tr><td>5</td><td>Verify BGP-to-OSPF redistribution</td><td><span class="status-pill ok">✓ Remote branch networks installed in routing table</span></td><td><img src="proj2_image/proj2-test5a.png" class="proof-thumb" alt="BGP to OSPF redistribution verification" onclick="openLightbox(this)" /></td></tr>
+                        <tr><td>3</td><td>Verify ISP BGP routing table</td><td><span class="status-pill ok">✓ Routes learned from all enterprise sites</span></td><td><img src="proj2_image/proj2-test3a.png" class="proof-thumb" alt="ISP BGP routing table verification" onclick="openLightbox(this)" />
+                          <div class="evidence-caption"><strong>ISP BGP routing table</strong><p>Routes learned from all enterprise sites.</p></div>
+                          </td></tr>
+                        <tr><td>4</td><td>Verify OSPF-to-BGP redistribution</td><td><span class="status-pill ok">✓ Branch LAN networks advertised into BGP</span></td><td><img src="proj2_image/proj2-test4a.png" class="proof-thumb" alt="OSPF to BGP redistribution verification" onclick="openLightbox(this)" />
+                          <div class="evidence-caption"><strong>OSPF-to-BGP redistribution</strong><p>Branch LAN networks advertised into BGP.</p></div>
+                          </td></tr>
+                        <tr><td>5</td><td>Verify BGP-to-OSPF redistribution</td><td><span class="status-pill ok">✓ Remote branch networks installed in routing table</span></td><td><img src="proj2_image/proj2-test5a.png" class="proof-thumb" alt="BGP to OSPF redistribution verification" onclick="openLightbox(this)" />
+                          <div class="evidence-caption"><strong>BGP-to-OSPF redistribution</strong><p>Remote branch networks installed in routing table.</p></div>
+                          </td></tr>
                         <tr><td>6</td><td>Verify inter-site connectivity</td><td><span class="status-pill ok">✓ Successful communication between enterprise sites</span></td><td>
                         <div class="proof-group">
 			    <img src="proj2_image/proj2-test6a.png" class="proof-thumb" alt="Inter-site connectivity verification" onclick="openLightbox(this)" />
-                            <img src="proj2_image/proj2-test6b.png" class="proof-thumb" alt="..." onclick="openLightbox(this)" />
+                            <div class="evidence-caption"><strong>Inter-site connectivity</strong><p>Successful communication between enterprise sites (PNG → HQ).</p></div>
+                            <img src="proj2_image/proj2-test6b.png" class="proof-thumb" alt="Inter-site connectivity verification, second view" onclick="openLightbox(this)" />
+                            <div class="evidence-caption"><strong>Inter-site connectivity</strong><p>Successful communication between enterprise sites (JHR → HQ).</p></div>
                           </div>
                           </td></tr>
                       </tbody>
@@ -1906,12 +1937,24 @@ aaa authentication ssh console LOCAL
                     <table class="data-table">
                       <thead><tr><th>#</th><th>Test</th><th>Result</th><th>Proof</th></tr></thead>
                       <tbody>
-                        <tr><td>1</td><td>Internal HR PC → Internal IT PC</td><td><span class="status-pill ok">✓ Allowed</span></td><td><img src="proj3_image/proj3-proof1.png" class="proof-thumb" alt="Internal HR to Internal IT test" onclick="openLightbox(this)" /></td></tr>
-                        <tr><td>2</td><td>Internal HR PC → DMZ HTTP Server (172.16.50.2)</td><td><span class="status-pill ok">✓ Page loads</span></td><td><img src="proj3_image/proj3-proof2.png" class="proof-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" /></td></tr>
-                        <tr><td>3</td><td>External HR PC → DMZ HTTP Server (172.16.50.2)</td><td><span class="status-pill ok">✓ Page loads</span></td><td><img src="proj3_image/proj3-proof3.png" class="proof-thumb" alt="External HR to DMZ HTTP test" onclick="openLightbox(this)" /></td></tr>
-                        <tr><td>4</td><td>External HR PC → Internal HR PC (192.168.10.2)</td><td><span class="status-pill fail">✗ Blocked</span></td><td><img src="proj3_image/proj3-proof4.png" class="proof-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" /></td></tr>
-                        <tr><td>5</td><td>DMZ HTTP Server → Internal HR PC (192.168.10.2)</td><td><span class="status-pill fail">✗ Blocked</span></td><td><img src="proj3_image/proj3-proof5.png" class="proof-thumb" alt="DMZ to Internal HR blocked test" onclick="openLightbox(this)" /></td></tr>
-                        <tr><td>6</td><td>Internal IT PC → SSH Internal Switch</td><td><span class="status-pill ok">✓ Login</span></td><td><img src="proj3_image/proj3-proof6.png" class="proof-thumb" alt="Internal IT SSH login test" onclick="openLightbox(this)" /></td></tr>
+                        <tr><td>1</td><td>Internal HR PC → Internal IT PC</td><td><span class="status-pill ok">✓ Allowed</span></td><td><img src="proj3_image/proj3-proof1.png" class="proof-thumb" alt="Internal HR to Internal IT test" onclick="openLightbox(this)" />
+                          <div class="evidence-caption"><strong>Internal HR PC → Internal IT PC</strong><p>Internal zone communication allowed as expected.</p></div>
+                          </td></tr>
+                        <tr><td>2</td><td>Internal HR PC → DMZ HTTP Server (172.16.50.2)</td><td><span class="status-pill ok">✓ Page loads</span></td><td><img src="proj3_image/proj3-proof2.png" class="proof-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
+                          <div class="evidence-caption"><strong>Internal HR PC → DMZ HTTP Server</strong><p>Internal users can reach the public-facing DMZ service; page loads successfully.</p></div>
+                          </td></tr>
+                        <tr><td>3</td><td>External HR PC → DMZ HTTP Server (172.16.50.2)</td><td><span class="status-pill ok">✓ Page loads</span></td><td><img src="proj3_image/proj3-proof3.png" class="proof-thumb" alt="External HR to DMZ HTTP test" onclick="openLightbox(this)" />
+                          <div class="evidence-caption"><strong>External HR PC → DMZ HTTP Server</strong><p>External users can reach the published DMZ service; page loads successfully.</p></div>
+                          </td></tr>
+                        <tr><td>4</td><td>External HR PC → Internal HR PC (192.168.10.2)</td><td><span class="status-pill fail">✗ Blocked</span></td><td><img src="proj3_image/proj3-proof4.png" class="proof-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
+                          <div class="evidence-caption"><strong>External HR PC → Internal HR PC</strong><p>External users are correctly blocked from reaching the protected internal network.</p></div>
+                          </td></tr>
+                        <tr><td>5</td><td>DMZ HTTP Server → Internal HR PC (192.168.10.2)</td><td><span class="status-pill fail">✗ Blocked</span></td><td><img src="proj3_image/proj3-proof5.png" class="proof-thumb" alt="DMZ to Internal HR blocked test" onclick="openLightbox(this)" />
+                          <div class="evidence-caption"><strong>DMZ HTTP Server → Internal HR PC</strong><p>DMZ isolation confirmed; lateral movement into the internal network is blocked.</p></div>
+                          </td></tr>
+                        <tr><td>6</td><td>Internal IT PC → SSH Internal Switch</td><td><span class="status-pill ok">✓ Login</span></td><td><img src="proj3_image/proj3-proof6.png" class="proof-thumb" alt="Internal IT SSH login test" onclick="openLightbox(this)" />
+                          <div class="evidence-caption"><strong>Internal IT PC → SSH Internal Switch</strong><p>Authorised management access via SSH successful.</p></div>
+                          </td></tr>
                       </tbody>
                     </table>
                   </div>
@@ -2094,12 +2137,12 @@ aaa authentication ssh console LOCAL
               </ul>
                   <div class="evidence-gallery">
                     <div class="evidence-item">
-                      <img src="images/2021_leaders(1).png" class="evidence-thumb" alt="Leadership Club committee activity" onclick="openLightbox(this)" />
-                      <div class="evidence-caption">Leadership Club committee</div>
+                      <img src="images/2021_leaders(1).png" class="evidence-thumb" alt="Leadership Club committee appointment" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Stepping into leadership</strong><p>Being appointed Secretary of the Leadership Club committee.</p></div>
                     </div>
                     <div class="evidence-item">
                       <img src="images/2021_leaders(2).jpg" class="evidence-thumb" alt="Leadership Club committee activity" onclick="openLightbox(this)" />
-                      <div class="evidence-caption">Leadership Club committee</div>
+                      <div class="evidence-caption"><strong>Committee at work</strong><p>Working alongside fellow committee members for Club Promotion Day.</p></div>
                     </div>
                   </div>
             </div>
@@ -2118,14 +2161,14 @@ aaa authentication ssh console LOCAL
 	      </ul>
                   <div class="evidence-gallery">
                     <div class="evidence-item">
-                      <img src="images/2021_ultras(1).png" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
+                      <img src="images/2021_ultras(1).png" class="evidence-thumb" alt="Packing Ramadan Iftar packs" onclick="openLightbox(this)" />
                       <div class="evidence-caption"><strong>Preparing with purpose</strong>
                 <p>Packing Ramadan Iftar packs for hostel-resident students as part of the ULTRAS initiative.</p></div>
                     </div>
                     <div class="evidence-item">
-                      <img src="images/2021_ultras(2).jpg" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
+                      <img src="images/2021_ultras(2).jpg" class="evidence-thumb" alt="Post Iftar Pack distribution" onclick="openLightbox(this)" />
                       <div class="evidence-caption"><strong>Delivering the effort</strong>
-                <p>Distributing Iftar packs to students — the result of weeks of budgeting and coordination.</p></div>
+                <p>Post-Iftar Packs distribution — a shot with the team along with the late Mejar Bersekutu Azrul Hisyam bin Abdul Rahman (Deputy Dean SDCL) and our valued partner, Puan Chek Yam Bte Abd Manap.</p></div>
                     </div>
                    
 		</div>
@@ -2173,12 +2216,12 @@ aaa authentication ssh console LOCAL
 	      </ul>
                   <div class="evidence-gallery">
                     <div class="evidence-item">
-                      <img src="images/2022_leaders(1).png" class="evidence-thumb" alt="Leadership Club committee activity" onclick="openLightbox(this)" />
-                      <div class="evidence-caption">Leadership Club committee appointment</div>
+                      <img src="images/2022_leaders(1).png" class="evidence-thumb" alt="Leadership Club committee appoinment" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Stepping up from Secretary to Vice President.</strong><p>Being appointed Vice President of the Leadership Club committee.</p></div>
                     </div>
                     <div class="evidence-item">
                       <img src="images/2022_leaders(2).jpg" class="evidence-thumb" alt="Leadership Club committee activity" onclick="openLightbox(this)" />
-                      <div class="evidence-caption">Leadership Club committee</div>
+                      <div class="evidence-caption"><strong>Leading the committee</strong><p>The team behind the scenes: Our 2022 Committees.</p></div>
                     </div>
                   </div>
             </div>
@@ -2194,16 +2237,16 @@ aaa authentication ssh console LOCAL
   	        <li>Collaborated with Green Ribbon Group Malaysia to organise a mental health initiative involving UniKL BMI, MIDI, and MIAT.</li>
   	        <li>Formed and led a committee consisting of 10 members and navigated programme planning for a two-day event.</li>
  		<li>Managed project timelines, stakeholder communication, KPI tracking, and programme coordination.</li>
-	        <li>Successfully delivered a two-day programme that resulted in 30+ participants becoming certified Mental Health Ambassadors.</li>
+	        <li>Successfully delivered a two-day programme that resulted in 30 students becoming certified Mental Health Ambassadors.</li>
 	      </ul>
                   <div class="evidence-gallery">
                     <div class="evidence-item">
                       <img src="images/2022_great(1).jfif" class="evidence-thumb" alt="GREAT programme activity" onclick="openLightbox(this)" />
-                      <div class="evidence-caption">GREAT programme</div>
+                      <div class="evidence-caption"><strong>Minds connected, hearts supported</strong><p>Bridging campuses for a cause: Proud to organize and mentor these dedicated students from BMI, MIDI, and MIAT.</p></div>
                     </div>
                     <div class="evidence-item">
                       <img src="images/2022_great(2).jfif" class="evidence-thumb" alt="GREAT Project Certificate" onclick="openLightbox(this)" />
-                      <div class="evidence-caption">GREAT Project Certificate</div>
+                      <div class="evidence-caption"><strong>Certificate for GREAT organising committees</strong><p>Reflecting on a rewarding journey as Project Manager—thank you for the appreciation!</p></div>
                     </div>
                   </div>
             </div>
@@ -2237,16 +2280,16 @@ aaa authentication ssh console LOCAL
 	      </ul>
                   <div class="evidence-gallery">
                     <div class="evidence-item">
-                      <img src="images/2022_wow(1).jpg" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
+                      <img src="images/2022_wow(1).jpg" class="evidence-thumb" alt="WOW orientation programme" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Registration day: Fully loaded 📝</strong><p>Proud to serve on the orientation crew, ensuring a smooth registration process for our incoming cohort.</p></div>
                     </div>
                     <div class="evidence-item">
-                      <img src="images/2022_wow(2).jpg" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
+                      <img src="images/2022_wow(2).jpg" class="evidence-thumb" alt="WOW orientation programme" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Welcoming the new intake</strong><p>Honored to serve as an Orientation Mentor and welcome our newest students.</p></div>
                     </div>
                     <div class="evidence-item">
-                      <img src="images/2022_wow(3).jpg" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
+                      <img src="images/2022_wow(3).jpg" class="evidence-thumb" alt="WOW orientation programme" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Mission accomplished at WOW TOT</strong><p>Full assembly of WOW Crew facilitators from every UniKL campus to sharpen our mentorship and orientation skills. </p></div>
                     </div>
 
             </div>
@@ -2280,16 +2323,16 @@ aaa authentication ssh console LOCAL
 	      </ul>
                   <div class="evidence-gallery">
                     <div class="evidence-item">
-                      <img src="images/2023_wow(1).jpg" class="evidence-thumb" alt="Inside to DMZ HTTP success" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 4</strong> — Inside → DMZ HTTP page loads</div>
+                      <img src="images/2023_wow(1).jpg" class="evidence-thumb" alt="WOW orientation programme" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Leading a 25-member team</strong><p>A complete lineup: The Orientation Committee with the Campus Dean, Ts. Dr. Zulkifli Mahmoodin and our advisor, Captain Zainin guiding us every step of the way.</p></div>
                     </div>
                     <div class="evidence-item">
-                      <img src="images/2023_wow(2).jpg" class="evidence-thumb" alt="Outside to Inside blocked" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 6</strong> — Outside → Inside blocked</div>
+                      <img src="images/2023_wow(2).jpg" class="evidence-thumb" alt="WOW orientation programme" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>Guiding the team</strong><p>Guiding incoming students through peer mentorship and collaborative onboarding activities.</p></div>
                     </div>
                     <div class="evidence-item">
-                      <img src="images/2023_wow(3).jpg" class="evidence-thumb" alt="Unauthorised SSH blocked" onclick="openLightbox(this)" />
-                      <div class="evidence-caption"><strong>Test 9</strong> — SSH blocked for unauthorised host</div>
+                      <img src="images/2023_wow(3).jpg" class="evidence-thumb" alt="WOW orientation programme" onclick="openLightbox(this)" />
+                      <div class="evidence-caption"><strong>WOW Wrap up</strong><p>Successfully managed and executed the orientation week program for the incoming student intake.</p></div>
                     </div>
 
 		</div>
